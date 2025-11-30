@@ -17,7 +17,6 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
-<<<<<<< HEAD
       <main
         className="flex-1"
         style={{
@@ -27,9 +26,6 @@ export default function AboutPage() {
           backgroundPosition: 'center',
         }}
       >
-=======
-      <main className="flex-1">
->>>>>>> 55e4fdf775fdd6d2c5918197ff40cb02c1f1b6d8
         {/* Header */}
         <section className="bg-primary/5 py-12 border-b border-border">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
