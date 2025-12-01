@@ -120,6 +120,56 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
       )
     }
 
+    // Special layout for 'Diplômes' menu: 1 item left (Bachelor), image center, 1 item right (MBA)
+    if (item.id === 'diplomes') {
+      const leftItems = item.children?.slice(0, 1) || []
+      const rightItems = item.children?.slice(1) || []
+      const centerImage = item.image || '/certificate-achievement.jpg'
+
+      return (
+        <div className="group">
+          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+            {item.label}
+            <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
+          </button>
+
+          <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
+              <div className="max-w-5xl mx-auto w-[92vw] p-6">
+                <div className="flex items-center justify-center gap-8">
+                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden max-w-xs">
+                    {leftItems.map((child) => (
+                      <DropdownItem
+                        key={child.id}
+                        child={child}
+                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border"
+                      />
+                    ))}
+                  </div>
+
+                  <div className="flex-shrink-0 px-4">
+                    <div className="relative w-64 h-48 rounded-md overflow-hidden shadow-md">
+                      <Image src={centerImage} alt="diplomes" fill className="object-cover" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden max-w-xs">
+                    {rightItems.map((child) => (
+                      <DropdownItem
+                        key={child.id}
+                        child={child}
+                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
     // Special layout for 'Cycles professionnels' (image centered, items to the right)
     if (item.id === 'cycles-pro') {
       const items = item.children || []
@@ -351,10 +401,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
   return (
     <nav className="sticky top-0 z-50 w-full relative border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 font-bold text-2xl text-primary">
-            <div className="relative w-20 h-20">
+        <div className="flex items-center h-16">
+          {/* Logo - positioned to the left */}
+          <Link href="/" className="flex items-center gap-3 font-bold text-2xl text-primary mr-8 flex-shrink-0">
+            <div className="relative w-16 h-16">
               <Image
                 src="/images/image.png"
                 alt="Logo"
@@ -364,8 +414,8 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
             </div>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-6">
+          {/* Desktop Menu - flex-1 to take remaining space */}
+          <div className="hidden md:flex items-center gap-4 flex-1">
             {menuData.map((item) => (
               <DesktopDropdown key={item.id} item={item} />
             ))}
@@ -377,16 +427,8 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
             </Link>
           </div>
 
-          {/* Right side icons */}
-          <div className="flex items-center gap-4">
-            <button
-              onClick={onToggleTheme}
-              className="p-2 rounded-lg hover:bg-muted transition-colors"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-
+          {/* Right side icons - pushed to the right */}
+          <div className="flex items-center gap-4 ml-auto">
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobile}

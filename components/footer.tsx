@@ -61,7 +61,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-primary" />
-                <span className="text-foreground/60 text-sm">+212 5XX XXX XXX</span>
+                <span className="text-foreground/60 text-sm">0661332721</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-primary" />
@@ -69,7 +69,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-2">
                 <MapPin size={16} className="text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-foreground/60 text-sm">Casablanca, Maroc</span>
+                <span className="text-foreground/60 text-sm">Bureau N° 45, Centre d'affaire MALIZIA Allal El Fassi, Marrakech 40000</span>
               </div>
             </div>
           </div>

@@ -87,6 +87,16 @@ export const DEFAULT_MENU: MenuDataStore = {
       ],
     },
     {
+      id: 'diplomes',
+      label: 'Diplômes',
+      href: '/diplomes',
+      image: '/certificate-achievement.jpg',
+      children: [
+        { id: 'bachelor', label: 'Bachelor', href: '/diplomes/bachelor', image: '/professional-development.jpg' },
+        { id: 'mba', label: 'MBA', href: '/diplomes/mba', image: '/leadership-training-workshop.png' },
+      ],
+    },
+    {
       id: 'location-salles',
       label: 'Location de salles',
       href: '/location-salles',

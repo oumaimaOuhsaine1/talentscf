@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, use } from 'react'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { Clock, Users, MapPin, Star, Check } from 'lucide-react'
 import Link from 'next/link'
 
-export default function FormationDetailPage({ params }: { params: { id: string } }) {
+export default function FormationDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params)
   const [isDark, setIsDark] = useState(false)
 
   const toggleTheme = () => {
@@ -18,7 +19,7 @@ export default function FormationDetailPage({ params }: { params: { id: string }
 
   // Mock data - in a real app, this would be fetched based on params.id
   const training = {
-    id: params.id,
+    id: id,
     title: 'Fondamentaux de la PNL',
     category: 'PNL',
     trainer: 'Dr. Mohamed Alaoui',
@@ -85,7 +86,7 @@ export default function FormationDetailPage({ params }: { params: { id: string }
                 <div className="bg-card border border-border rounded-xl p-8">
                   <h2 className="text-2xl font-bold mb-4">À Propos de cette Formation</h2>
                   <p className="text-foreground/70 leading-relaxed mb-6">{training.description}</p>
-                  
+
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="bg-muted/50 rounded-lg p-4 text-center">
                       <Clock size={24} className="text-primary mx-auto mb-2" />

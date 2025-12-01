@@ -6,9 +6,9 @@ import Footer from '@/components/footer'
 import HeroSection from '@/components/hero-section'
 import ServicesSection from '@/components/services-section'
 import StatsSection from '@/components/stats-section'
-import TrainingsPreview from '@/components/trainings-preview'
+import LanguagesSection from '@/components/languages-section'
 import TestimonialsSection from '@/components/testimonials-section'
-import CTASection from '@/components/cta-section'
+
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
@@ -32,9 +32,9 @@ export default function Home() {
         <HeroSection />
         <ServicesSection />
         <StatsSection />
-        <TrainingsPreview />
+        <LanguagesSection />
         <TestimonialsSection />
-        <CTASection />
+
       </main>
       <Footer />
     </div>
