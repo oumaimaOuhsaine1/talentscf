@@ -48,10 +48,15 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
     <Link
       href={child.href}
       className={
-        `block px-4 py-3 text-foreground/80 text-sm first:rounded-t-lg last:rounded-b-lg transform transition-all duration-200 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 ${className}`
+        `flex items-center gap-3 px-4 py-3 text-foreground/80 text-sm first:rounded-t-lg last:rounded-b-lg transform transition-all duration-200 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 ${className}`
       }
     >
-      <span className="block">{child.label}</span>
+      {child.image && (
+        <div className="relative w-6 h-4 flex-shrink-0">
+          <Image src={child.image} alt={child.label} fill className="object-cover rounded-sm" />
+        </div>
+      )}
+      <span className="block font-semibold">{child.label}</span>
     </Link>
   )
 
@@ -66,15 +71,11 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
         </Link>
       )
     }
-    // Special layout for 'À propos' and 'PNL' menus: 4 items left, image center, 3 items right
-    if (item.id === 'apropos' || item.id === 'pnl') {
+    // Special layout for 'À propos' menu: 4 items left, image center, 3 items right
+    if (item.id === 'apropos') {
       const leftItems = item.children.slice(0, 4)
       const rightItems = item.children.slice(4)
-      // choose center image: keep the forced leadership image for 'apropos',
-      // otherwise prefer item.image or the first child's image
-      const centerImage = item.id === 'apropos'
-        ? '/leadership-training-workshop.png'
-        : (item.image || item.children.find((c) => c.image)?.image || '/images/image.png')
+      const centerImage = '/leadership-training-workshop.png'
 
       return (
         <div className="group">
@@ -120,10 +121,60 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
       )
     }
 
+    // Special layout for 'Arfa Développement': 8 items left, image center, 8 items right
+    if (item.id === 'arfa-dev') {
+      const leftItems = item.children?.slice(0, 8) || []
+      const rightItems = item.children?.slice(8, 16) || []
+      const centerImage = item.image || '/neuro-linguistic-programming.jpg'
+
+      return (
+        <div className="group">
+          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+            {item.label}
+            <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
+          </button>
+
+          <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
+              <div className="max-w-7xl mx-auto w-[92vw] p-6">
+                <div className="flex items-center justify-between gap-6">
+                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden">
+                    {leftItems.map((child) => (
+                      <DropdownItem
+                        key={child.id}
+                        child={child}
+                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                      />
+                    ))}
+                  </div>
+
+                  <div className="flex-shrink-0 px-4">
+                    <div className="relative w-64 h-48 rounded-md overflow-hidden shadow-md">
+                      <Image src={centerImage} alt="arfa-dev" fill className="object-cover" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden">
+                    {rightItems.map((child) => (
+                      <DropdownItem
+                        key={child.id}
+                        child={child}
+                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
     // Special layout for 'Diplômes' menu: 1 item left (Bachelor), image center, 1 item right (MBA)
     if (item.id === 'diplomes') {
-      const leftItems = item.children?.slice(0, 1) || []
-      const rightItems = item.children?.slice(1) || []
+      const leftItems = item.children?.slice(0, 2) || []
+      const rightItems = item.children?.slice(2) || []
       const centerImage = item.image || '/certificate-achievement.jpg'
 
       return (
@@ -142,7 +193,7 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
                       <DropdownItem
                         key={child.id}
                         child={child}
-                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border"
+                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
                       />
                     ))}
                   </div>
@@ -158,7 +209,7 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
                       <DropdownItem
                         key={child.id}
                         child={child}
-                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border"
+                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
                       />
                     ))}
                   </div>
@@ -211,12 +262,122 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
       )
     }
 
+    // Special layout for 'Langues': image center, split choices 2 left / 2 right
+    if (item.id === 'langues') {
+      const items = item.children || []
+      const centerImage = item.image || '/languages-globe.jpg'
+      const leftItems = items.slice(0, 2)
+      const rightItems = items.slice(2, 4)
+
+      return (
+        <div className="group">
+          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+            {item.label}
+            <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
+          </button>
+
+          <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
+              <div className="max-w-5xl mx-auto w-[92vw] p-6">
+                <div className="flex items-center justify-center gap-8">
+                  <div className="flex-1 max-w-xs">
+                    <div className="flex flex-col divide-y divide-border rounded-lg overflow-hidden">
+                      {leftItems.map((child) => (
+                        <DropdownItem
+                          key={child.id}
+                          child={child}
+                          className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex-shrink-0 px-4">
+                    <div className="relative w-64 h-48 rounded-md overflow-hidden shadow-md">
+                      <Image src={centerImage} alt="langues" fill className="object-cover" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 max-w-xs">
+                    <div className="flex flex-col divide-y divide-border rounded-lg overflow-hidden">
+                      {rightItems.map((child) => (
+                        <DropdownItem
+                          key={child.id}
+                          child={child}
+                          className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    // Special layout for 'News': 2 items left, center image, 1 item right
+    if (item.id === 'news') {
+      const items = item.children || []
+      const leftItems = items.slice(0, 2)
+      const rightItems = items.slice(2)
+      const centerImage = item.image || '/images/bansection.jpg'
+
+      return (
+        <div className="group">
+          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+            {item.label}
+            <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
+          </button>
+
+          <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
+              <div className="max-w-7xl mx-auto w-[92vw] p-6">
+                <div className="flex items-center justify-center gap-8">
+                  <div className="flex-1 max-w-xs">
+                    <div className="flex flex-col divide-y divide-border rounded-lg overflow-hidden">
+                      {leftItems.map((child) => (
+                        <DropdownItem
+                          key={child.id}
+                          child={child}
+                          className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex-shrink-0">
+                    <div className="relative w-64 h-44 rounded-md overflow-hidden shadow-md">
+                      <Image src={centerImage} alt="news" fill className="object-cover" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 max-w-xs">
+                    <div className="flex flex-col divide-y divide-border rounded-lg overflow-hidden">
+                      {rightItems.map((child) => (
+                        <DropdownItem
+                          key={child.id}
+                          child={child}
+                          className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
     // Special layout for 'Intra-entreprises': image center, split choices 2 left / 2 right
     if (item.id === 'intra-entreprises') {
       const items = item.children || []
       const centerImage = item.image || '/productivity-training.jpg' // prefer item.image if provided
-      const leftItems = items.slice(0, 2)
-      const rightItems = items.slice(2, 4)
+      const leftItems = items.slice(0, 4)
+      const rightItems = items.slice(4)
 
       return (
         <div className="group">
@@ -266,14 +427,11 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
       )
     }
 
-    // Special layout for 'Coaching & Consulting': left image (training-course) + 4 items, center image, then remaining items to right
-    if (item.id === 'coaching') {
-      const items = item.children || []
-      const leftImage = '/training-course.png' // requested left image
-      const centerImage = item.image || '/coaching-consultation.jpg'
-      // keep the last 5 items close to the center image when available
-      const rightItems = items.length > 5 ? items.slice(-5) : items.slice(4)
-      const leftItems = items.slice(0, items.length - rightItems.length)
+    // Special layout for 'Accompagnement': 1 item left, image center, 1 item right
+    if (item.id === 'accompagnement') {
+      const leftItems = item.children?.slice(0, 1) || []
+      const rightItems = item.children?.slice(1) || []
+      const centerImage = '/images/vision.jpg'
 
       return (
         <div className="group">
@@ -284,35 +442,30 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
-              <div className="max-w-7xl mx-auto w-[92vw] p-6">
-                <div className="flex items-center justify-between gap-6">
-                  <div className="flex items-start gap-4">
-                    <div className="relative w-56 h-40 rounded-md overflow-hidden shadow-md self-start">
-                      <Image src={leftImage} alt="training-course" fill className="object-cover" />
-                    </div>
-                    <div className="flex flex-col rounded-lg overflow-hidden max-w-xs">
-                      {leftItems.map((child) => (
-                        <DropdownItem
-                          key={child.id}
-                          child={child}
-                          className="text-foreground/100 text-base font-semibold px-4 py-3 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
-                        />
-                      ))}
+              <div className="max-w-5xl mx-auto w-[92vw] p-6">
+                <div className="flex items-center justify-center gap-8">
+                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden max-w-xs">
+                    {leftItems.map((child) => (
+                      <DropdownItem
+                        key={child.id}
+                        child={child}
+                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                      />
+                    ))}
+                  </div>
+
+                  <div className="flex-shrink-0 px-4">
+                    <div className="relative w-64 h-48 rounded-md overflow-hidden shadow-md">
+                      <Image src={centerImage} alt="accompagnement" fill className="object-cover" />
                     </div>
                   </div>
 
-                  <div className="flex-shrink-0">
-                    <div className="relative w-56 h-40 rounded-md overflow-hidden shadow-md">
-                      <Image src={centerImage} alt="coaching" fill className="object-cover" />
-                    </div>
-                  </div>
-
-                  <div className="flex-1 flex flex-col gap-2 max-w-sm">
+                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden max-w-xs">
                     {rightItems.map((child) => (
                       <DropdownItem
                         key={child.id}
                         child={child}
-                        className="text-foreground/100 text-base font-semibold px-4 py-3 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
                       />
                     ))}
                   </div>
@@ -323,6 +476,9 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
         </div>
       )
     }
+
+
+
 
 
     return (
@@ -349,9 +505,14 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
         <div className="flex items-center justify-between">
           <Link
             href={item.href}
-            className="flex-1 px-4 py-2 text-foreground/70 hover:text-primary hover:bg-muted transition-colors"
+            className="flex-1 flex items-center gap-3 px-4 py-2 text-foreground/70 hover:text-primary hover:bg-muted transition-colors"
             onClick={() => setIsOpen(false)}
           >
+            {item.image && (
+              <div className="relative w-5 h-3 flex-shrink-0">
+                <Image src={item.image} alt={item.label} fill className="object-cover rounded-sm" />
+              </div>
+            )}
             {item.label}
           </Link>
           {hasChildren && (

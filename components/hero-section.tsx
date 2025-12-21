@@ -46,11 +46,8 @@ export default function HeroSection() {
   // Partners and trust/carousel state
   const partners = useMemo(
     () => [
-      { id: 'p1', name: 'Partner A', logo: '/images/partner1.svg' },
-      { id: 'p2', name: 'Partner B', logo: '/images/partner2.svg' },
-      { id: 'p3', name: 'Partner C', logo: '/images/partner3.svg' },
-      { id: 'p4', name: 'Partner D', logo: '/images/partner4.svg' },
-      { id: 'p5', name: 'Partner E', logo: '/images/partner5.svg' },
+      { id: 'wesford', name: 'Wesford Genève', logo: '/images/wesford.png' },
+      { id: 'efv', name: 'EFV', logo: '/images/efv.png' },
     ],
     []
   )
@@ -142,7 +139,7 @@ export default function HeroSection() {
       {/* Partners Section */}
       <div className="relative z-10 mt-12 py-12 bg-background">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-          <div className="text-center mb-6">
+          <div className="text-center mb-10">
             <h3 className="text-3xl md:text-4xl font-bold text-primary uppercase">Nos partenaires internationaux</h3>
             <div className="mt-3 inline-flex items-center justify-center gap-3">
               <span className="w-1.5 h-6 rounded-full bg-red-600" aria-hidden="true" />
@@ -151,26 +148,25 @@ export default function HeroSection() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+          <div className="flex flex-wrap justify-center gap-12 sm:gap-16">
             {partners.map((p) => (
-              <div key={p.id} className="relative">
+              <div key={p.id} className="relative group">
                 {/* decorative red circle behind the card */}
                 <div
                   aria-hidden="true"
-                  className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-36 h-36 rounded-full bg-red-600/10 dark:bg-red-600/20 blur-md"
+                  className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-40 h-40 rounded-full bg-red-600/10 dark:bg-red-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
                 />
 
-                <div className="bg-white dark:bg-card rounded-lg p-6 flex flex-col items-center gap-3 shadow-md hover:shadow-xl transform transition-transform hover:-translate-y-2 border border-border relative z-10">
+                <div className="bg-white dark:bg-card rounded-2xl p-8 flex flex-col items-center justify-center gap-4 shadow-lg hover:shadow-2xl transform transition-all hover:-translate-y-3 border border-border relative z-10 w-64 h-48">
                   {/** logo if exists, else placeholder */}
                   {p.logo ? (
-                    // use next/image for optimization; if image missing it will show 404 in browser
-                    <div className="w-28 h-16 relative">
+                    <div className="w-40 h-24 relative">
                       <Image src={p.logo} alt={p.name} fill className="object-contain" />
                     </div>
                   ) : (
-                    <div className="w-28 h-16 flex items-center justify-center bg-muted rounded">{p.name}</div>
+                    <div className="w-40 h-24 flex items-center justify-center bg-muted rounded-xl">{p.name}</div>
                   )}
-                  <div className="text-center text-sm font-medium">{p.name}</div>
+                  <div className="text-center text-base font-bold text-foreground/80">{p.name}</div>
                 </div>
               </div>
             ))}

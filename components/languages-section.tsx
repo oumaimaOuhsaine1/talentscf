@@ -24,11 +24,11 @@ const languages = [
         color: 'bg-yellow-500'
     },
     {
-        id: 'turc',
-        name: 'Turc',
-        description: "Découvrez une langue fascinante, pont entre l'Orient et l'Occident.",
-        image: '/images/turque.avif',
-        color: 'bg-red-500'
+        id: 'espagnol',
+        name: 'Espagnol',
+        description: "Découvrez la passion et la chaleur de l'Espagnol, la deuxième langue la plus parlée au monde.",
+        image: '/images/espagnol.avif',
+        color: 'bg-orange-500'
     }
 ]
 

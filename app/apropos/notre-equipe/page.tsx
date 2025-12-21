@@ -54,8 +54,8 @@ export default function NotreEquipePage() {
                                 <div className="relative w-64 h-64 bg-white p-2 shadow-xl rotate-3 hover:rotate-0 transition-transform duration-300">
                                     <div className="relative w-full h-full bg-gray-200 overflow-hidden">
                                         <Image
-                                            src="/images/mahdi.png"
-                                            alt="Mahdi Mouatassime"
+                                            src="/images/mrSamir.jpg"
+                                            alt="Samir Zahir"
                                             fill
                                             className="object-cover"
                                         />
@@ -90,8 +90,8 @@ export default function NotreEquipePage() {
                                 <div className="relative w-64 h-64 bg-white p-2 shadow-xl -rotate-3 hover:rotate-0 transition-transform duration-300">
                                     <div className="relative w-full h-full bg-gray-200 overflow-hidden">
                                         <Image
-                                            src="/images/riahi.png"
-                                            alt="Riahi Chabba"
+                                            src="/images/mrDriss.jpg"
+                                            alt="Docteur Arfa Driss"
                                             fill
                                             className="object-cover"
                                         />
@@ -103,7 +103,7 @@ export default function NotreEquipePage() {
                             <div className="w-full md:w-2/3 space-y-6">
                                 <div className="inline-block">
                                     <h2 className="text-2xl md:text-3xl font-bold text-[#005b96] uppercase mb-2">
-                                        RIAHI CHABBA
+                                        DOCTEUR ARFA DRISS
                                     </h2>
                                     <div className="h-1 w-24 bg-[#FF8A00]"></div>
                                 </div>
