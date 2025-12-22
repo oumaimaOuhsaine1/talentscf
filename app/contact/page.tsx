@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { Mail, Phone, MapPin } from 'lucide-react'
@@ -39,11 +40,18 @@ export default function ContactPage() {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Navbar isDark={isDark} onToggleTheme={toggleTheme} />
       <main className="flex-1">
-        {/* Header */}
-        <section className="bg-primary/5 py-12 border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl md:text-5xl font-bold mb-2">Nous Contacter</h1>
-            <p className="text-foreground/70">Des questions ? Nous sommes là pour vous aider !</p>
+        {/* Header (hero style like Événements Culturels) */}
+        <section className="relative h-[400px] w-full overflow-hidden bg-gradient-to-br from-[#003E6B] to-[#002845]">
+          <div className="absolute inset-0 opacity-40">
+            <Image src="/images/contact.png" alt="Contact" fill className="object-cover" />
+          </div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-widest animate-fade-in-up mb-4">
+              Nous Contacter
+            </h1>
+            <p className="text-xl text-white/80 max-w-2xl animate-fade-in-up delay-100">
+              Des questions ? Nous sommes là pour vous aider !
+            </p>
           </div>
         </section>
 
@@ -63,16 +71,11 @@ export default function ContactPage() {
                 <div className="bg-card border border-border rounded-xl p-8">
                   <Phone size={32} className="text-primary mb-4" />
                   <h3 className="text-xl font-bold mb-2">Téléphone</h3>
-                  <p className="text-foreground/70">+212 5XX XXX XXX</p>
-                  <p className="text-foreground/70 text-sm mt-1">Lun-Ven: 09:00 - 18:00</p>
+                  <p className="text-foreground/70">0661-332721</p>
+                  <p className="text-foreground/70 text-sm mt-1">Disponible: Lundi - Vendredi 09:00–21:30</p>
                 </div>
 
-                <div className="bg-card border border-border rounded-xl p-8">
-                  <MapPin size={32} className="text-primary mb-4" />
-                  <h3 className="text-xl font-bold mb-2">Adresse</h3>
-                  <p className="text-foreground/70">Centre de Formation Talents</p>
-                  <p className="text-foreground/70 text-sm mt-1">Casablanca, Maroc</p>
-                </div>
+                {/* Carte déplacée après le formulaire pour s'afficher en pleine largeur */}
               </div>
 
               {/* Contact Form */}
@@ -161,6 +164,21 @@ export default function ContactPage() {
                   </form>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Full width map after the form */}
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+            <div className="w-full h-96 rounded-lg overflow-hidden border border-border">
+              <iframe
+                title="Centre d'affaires Malizia - Carte"
+                src="https://www.google.com/maps?q=31.6649778,-8.0124168&z=17&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </div>
         </section>

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { CheckCircle, ArrowRight, BookOpen, MessageCircle, TrendingUp, Globe } from 'lucide-react'
+import { CheckCircle, ArrowRight, BookOpen, MessageCircle, TrendingUp, Globe, Users, User, Users2, Target, Sparkles, Coffee, Presentation } from 'lucide-react'
 
 export default function AllemandPage() {
     const [isDark, setIsDark] = useState(false)
@@ -97,6 +97,49 @@ export default function AllemandPage() {
                     </div>
                 </section>
 
+                {/* Formation Types Section */}
+                <section className="py-20 bg-background">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Types de Formation</h2>
+                            <p className="text-muted-foreground max-w-2xl mx-auto">
+                                Choisissez le format qui correspond le mieux à votre rythme et à vos objectifs.
+                            </p>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {[
+                                {
+                                    icon: <Users className="w-8 h-8 text-yellow-600" />,
+                                    title: "Cours en Groupe",
+                                    desc: "Favorise l'interaction et l'apprentissage collaboratif dans une ambiance dynamique."
+                                },
+                                {
+                                    icon: <User className="w-8 h-8 text-yellow-600" />,
+                                    title: "Cours Individuels",
+                                    desc: "Un accompagnement sur-mesure pour une progression rapide et ciblée."
+                                },
+                                {
+                                    icon: <Users2 className="w-8 h-8 text-yellow-600" />,
+                                    title: "Cours en Binôme",
+                                    desc: "Apprenez avec un collègue ou un ami pour une motivation partagée."
+                                },
+                                {
+                                    icon: <Target className="w-8 h-8 text-yellow-600" />,
+                                    title: "Préparation Certifications",
+                                    desc: "Entraînement intensif pour réussir les examens du Goethe-Institut et TestDaF."
+                                }
+                            ].map((type, index) => (
+                                <div key={index} className="p-8 rounded-2xl bg-muted/50 border border-border hover:border-yellow-600/50 transition-all hover:shadow-xl group">
+                                    <div className="mb-6 group-hover:scale-110 transition-transform">{type.icon}</div>
+                                    <h4 className="text-xl font-bold mb-3">{type.title}</h4>
+                                    <p className="text-muted-foreground">{type.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
                 {/* Advantages Section */}
                 <section className="py-20 bg-muted/30">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -133,6 +176,66 @@ export default function AllemandPage() {
                                 Jetzt Deutsch lernen
                                 <ArrowRight className="w-5 h-5" />
                             </Link>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Complementary Activities Section */}
+                <section className="py-20 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-yellow-500/5 -skew-y-3 origin-right transform translate-y-12"></div>
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                        <div className="flex flex-col lg:flex-row items-center gap-12">
+                            <div className="lg:w-1/2">
+                                <h2 className="text-3xl md:text-4xl font-bold mb-6">Activités Complémentaires</h2>
+                                <p className="text-lg text-muted-foreground mb-8">
+                                    En plus de vos cours, profitez de moments d'échange et d'ateliers pratiques pour perfectionner votre pratique en situation réelle.
+                                </p>
+                                <div className="space-y-6">
+                                    {[
+                                        {
+                                            icon: <Sparkles className="w-6 h-6 text-yellow-600" />,
+                                            title: "Workshops Thématiques",
+                                            desc: "Ateliers ciblés sur l'allemand professionnel et technique."
+                                        },
+                                        {
+                                            icon: <Presentation className="w-6 h-6 text-yellow-600" />,
+                                            title: "Séminaires Culturels",
+                                            desc: "Conférences sur l'économie et la culture des pays germanophones."
+                                        },
+                                        {
+                                            icon: <Coffee className="w-6 h-6 text-yellow-600" />,
+                                            title: "Sessions One-to-One",
+                                            desc: "Échanges personnalisés pour lever vos blocages et améliorer votre fluidité."
+                                        }
+                                    ].map((activity, index) => (
+                                        <div key={index} className="flex gap-4">
+                                            <div className="flex-shrink-0 mt-1">{activity.icon}</div>
+                                            <div>
+                                                <h5 className="font-bold text-lg">{activity.title}</h5>
+                                                <p className="text-muted-foreground">{activity.desc}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="lg:w-1/2 grid grid-cols-2 gap-4">
+                                <div className="space-y-4 pt-8">
+                                    <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg">
+                                        <Image src="/professional-development.jpg" alt="Atelier" fill className="object-cover" />
+                                    </div>
+                                    <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg">
+                                        <Image src="/organizational-coaching.jpg" alt="Séminaire" fill className="object-cover" />
+                                    </div>
+                                </div>
+                                <div className="space-y-4">
+                                    <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg">
+                                        <Image src="/master-coach.jpg" alt="Coaching" fill className="object-cover" />
+                                    </div>
+                                    <div className="relative h-64 rounded-2xl overflow-hidden shadow-lg">
+                                        <Image src="/master-training.jpg" alt="Conversation" fill className="object-cover" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
