@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { CheckCircle, ArrowRight, BookOpen, MessageCircle, Sun, Music, Users, User, Users2, Target, Sparkles, Coffee, Presentation } from 'lucide-react'
+import { CheckCircle, ArrowRight, BookOpen, MessageCircle, Sun, Music, Users, User, Users2, Target, Sparkles, Coffee, Presentation, Globe, Award } from 'lucide-react'
 
 export default function EspagnolPage() {
     const [isDark, setIsDark] = useState(false)
@@ -68,6 +68,14 @@ export default function EspagnolPage() {
                                     <div className="flex items-center gap-3">
                                         <Sun className="text-orange-600" />
                                         <span>Espagnol de Voyage</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Globe className="text-orange-600" />
+                                        <span>Formation en langues étrangères</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Award className="text-orange-600" />
+                                        <span>Préparation aux attestations internationales</span>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <MessageCircle className="text-orange-600" />
@@ -168,15 +176,6 @@ export default function EspagnolPage() {
                             ))}
                         </div>
 
-                        <div className="mt-16 text-center">
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-3 bg-orange-600 hover:bg-orange-700 text-white text-lg font-bold py-4 px-8 rounded-full transition-all shadow-lg"
-                            >
-                                ¡Empieza ahora!
-                                <ArrowRight className="w-5 h-5" />
-                            </Link>
-                        </div>
                     </div>
                 </section>
 
@@ -237,6 +236,19 @@ export default function EspagnolPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                {/* Final CTA Section */}
+                <section className="py-12 bg-background border-t border-border">
+                    <div className="max-w-7xl mx-auto px-4 text-center">
+                        <Link
+                            href="/contact/inscriptions-en-ligne"
+                            className="inline-flex items-center gap-3 bg-orange-600 hover:bg-orange-700 text-white text-xl font-bold py-5 px-10 rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-orange-600/20"
+                        >
+                            S'inscrire à une session
+                            <ArrowRight className="w-6 h-6" />
+                        </Link>
                     </div>
                 </section>
             </main>

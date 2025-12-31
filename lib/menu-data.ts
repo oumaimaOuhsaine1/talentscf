@@ -27,60 +27,25 @@ export const DEFAULT_MENU: MenuDataStore = {
         { id: 'equipe', label: 'Notre équipe', href: '/apropos/notre-equipe' },
         { id: 'partenaires', label: 'Nos partenaires', href: '/apropos/nos-partenaires' },
         { id: 'clients', label: 'Nos clients', href: '/apropos/nos-clients' },
-        { id: 'centre', label: 'Le centre Talents Consulting Formation', href: '/apropos/centre' },
-        { id: 'location-salle', label: 'Location de salle', href: '/location-salles' },
-        { id: 'calendrier', label: 'Calendrier des Formations', href: '/apropos/calendrier' },
+        { id: 'location-salles', label: 'Location de salles', href: '/location-salles' },
       ],
     },
     {
-      id: 'arfa-dev',
-      label: 'Arfa Développement',
-      href: '/arfa-developpement',
+      id: 'coaching-soft-skills-pnl',
+      label: 'Coaching- Soft Skills- PNL',
+      href: '/coaching-soft-skills-pnl',
       image: '/neuro-linguistic-programming.jpg',
       children: [
-        { id: 'certification', label: 'Certification PNL', href: '/pnl/certification' },
-        { id: 'parcours-coaching', label: 'Parcours coaching génératif & PNL', href: '/pnl/parcours-coaching' },
-        { id: 'formation-base', label: 'Formation de base en PNL', href: '/pnl/formation-base' },
-        { id: 'cycle-maitre', label: 'Cycle Maître Praticien en PNL', href: '/pnl/cycle-maitre' },
-        { id: 'cycle-coaching-gen', label: 'Cycle Coaching Génératif', href: '/pnl/cycle-coaching' },
-        { id: 'master-coach', label: 'Cycle Master Coach', href: '/pnl/master-coach' },
-        { id: 'enseignants', label: 'Équipe des enseignants', href: '/pnl/enseignants' },
-        { id: 'coaching-indiv', label: 'Coaching individuel', href: '/coaching/coaching-individuel' },
-        { id: 'coaching-equipe', label: 'Coaching d\'équipe', href: '/coaching/coaching-equipe' },
-        { id: 'coaching-ope', label: 'Coaching opérationnel', href: '/coaching/coaching-operationnel' },
-        { id: 'coaching-org', label: 'Coaching organisationnel', href: '/coaching/coaching-organisationnel' },
-        { id: 'team-building', label: 'Team building', href: '/coaching/team-building' },
-        { id: 'bilan-competences', label: 'Bilan des compétences', href: '/coaching/bilan-competences' },
-        { id: 'excellence-op', label: 'Excellence opérationnelle', href: '/coaching/excellence-operationnelle' },
-        { id: 'organisation', label: 'Organisation', href: '/coaching/organisation' },
-        { id: 'changement', label: 'Conduite de changement', href: '/coaching/conduite-changement' },
+        { id: 'coaching-individuel', label: 'Coaching individuel', href: '/coaching-soft-skills-pnl/coaching-individuel' },
+        { id: 'pnl', label: 'Programmation Neuro-Linguistique (PNL)', href: '/coaching-soft-skills-pnl/pnl' },
+        { id: 'soft-skills', label: 'Soft Skills', href: '/coaching-soft-skills-pnl/soft-skills' },
+        { id: 'dev-perso', label: 'Développement personnel', href: '/coaching-soft-skills-pnl/developpement-personnel' },
+        { id: 'consulting-psy', label: 'Consulting en psychologie cognitive', href: '/coaching-soft-skills-pnl/consulting-psychologie-cognitive' },
+        { id: 'tot', label: 'Formation des formateurs (TOT)', href: '/coaching-soft-skills-pnl/formation-formateurs' },
+        { id: 'bilan-competences', label: 'Bilan de compétences', href: '/coaching-soft-skills-pnl/bilan-competences' },
       ],
     },
-    {
-      id: 'cycles-pro',
-      label: 'Cycles professionnels',
-      href: '/cycles-professionnels',
-      image: '/professional-development.jpg',
-      children: [
-        { id: 'dev-perso', label: 'Développement personnel', href: '/cycles-professionnels/dev-personnel' },
-        { id: 'formation-formateurs', label: 'Formation des Formateurs', href: '/cycles-professionnels/formation-formateurs' },
-      ],
-    },
-    {
-      id: 'intra-entreprises',
-      label: 'Intra-entreprises',
-      href: '/intra-entreprises',
-      image: '/corporate-training-session.png',
-      children: [
-        { id: 'commercial', label: 'Commercial & Ventes', href: '/intra-entreprises/commercial-ventes' },
-        { id: 'management', label: 'Management & Leadership', href: '/intra-entreprises/management-leadership' },
-        { id: 'efficacite', label: 'Efficacité Individuelle', href: '/intra-entreprises/efficacite-individuelle' },
-        { id: 'mind-mapping', label: 'Formation en Mind Mapping', href: '/intra-entreprises/mind-mapping' },
-        { id: 'assurance', label: 'Assurance', href: '/intra-entreprises/assurance' },
-        { id: 'ai', label: 'Intelligence Artificielle', href: '/intra-entreprises/ai' },
-        { id: 'informatique', label: 'Informatique & IT', href: '/intra-entreprises/informatique' },
-      ],
-    },
+
     {
       id: 'diplomes',
       label: 'Diplômes',
@@ -88,20 +53,29 @@ export const DEFAULT_MENU: MenuDataStore = {
       image: '/certificate-achievement.jpg',
       children: [
         { id: 'bachelor', label: 'Bachelor', href: '/diplomes/bachelor' },
-        { id: 'cambridge', label: 'Cambridge', href: '/diplomes/cambridge' },
         { id: 'mba', label: 'MBA', href: '/diplomes/mba' },
         { id: 'dba', label: 'DBA', href: '/diplomes/dba' },
       ],
     },
     {
-      id: 'news',
-      label: 'News',
-      href: '/news',
-      image: '/images/bansection.jpg',
+      id: 'formations-certifiantes',
+      label: 'Formations certifiantes internationales',
+      href: '/formations-certifiantes',
+      image: '/certificate-achievement.jpg',
       children: [
-        { id: 'prochaines-formations', label: 'Prochaines Formations', href: '/news/formations' },
-        { id: 'annonces', label: 'Annonces', href: '/news/annonces' },
-        { id: 'evenements-culturels', label: 'Événements Culturels', href: '/news/evenements-culturels' },
+        { id: 'u-blue-hills', label: 'U Blue Hills', href: '/formations-certifiantes/u-blue-hills' },
+        { id: 'revue-sciences-gestion', label: 'La Revue de Sciences de Gestion', href: '/formations-certifiantes/revue-sciences-gestion' },
+      ],
+    },
+    {
+      id: 'accompagnement',
+      label: 'Accompagnement',
+      href: '/accompagnement',
+      children: [
+        { id: 'chercheurs', label: 'Chercheurs', href: '/accompagnement/chercheurs' },
+        { id: 'insertion-professionnelle', label: 'L’insertion professionnelle des lauréats', href: '/accompagnement/insertion-professionnelle' },
+        { id: 'porteurs-projets', label: 'Porteurs de projets', href: '/accompagnement/porteurs-projets' },
+        { id: 'etudes-etranger', label: 'Les études à l’étranger', href: '/accompagnement/etudes-etranger' },
       ],
     },
     {
@@ -117,14 +91,29 @@ export const DEFAULT_MENU: MenuDataStore = {
       ],
     },
     {
-      id: 'accompagnement',
-      label: 'Accompagnement',
-      href: '/accompagnement',
+      id: 'actualites',
+      label: 'Actualités',
+      href: '/actualites',
+      image: '/images/bansection.jpg',
       children: [
-        { id: 'chercheurs', label: 'Chercheurs', href: '/accompagnement/chercheurs' },
-        { id: 'etudiants', label: 'Étudiants', href: '/accompagnement/etudiants' },
+        { id: 'nouveautes-formations', label: 'Nouveautés formations', href: '/actualites/novetautes-formations' },
+        { id: 'evenements-academiques', label: 'Événements académiques', href: '/actualites/evenements-academiques' },
+        { id: 'opportunites-beneficiaires', label: 'Opportunités pour les bénéficiaires', href: '/actualites/opportunites-beneficiaires' },
+        { id: 'annonces-partenariats', label: 'Annonces et partenariats', href: '/actualites/annonces-partenariats' },
       ],
     },
+    {
+      id: 'contact',
+      label: 'Contact',
+      href: '/contact',
+      image: '/images/contact.png',
+      children: [
+        { id: 'inscriptions-en-ligne', label: 'Inscriptions en ligne', href: '/contact/inscriptions-en-ligne' },
+        { id: 'demandes-information', label: 'Demandes d’information', href: '/contact/demandes-information' },
+        { id: 'pre-diagnostics', label: 'Pré-diagnostics de besoins', href: '/contact/pre-diagnostics' },
+      ],
+    },
+
   ],
 }
 
@@ -132,7 +121,7 @@ export const DEFAULT_MENU: MenuDataStore = {
 export function getMenuData(): MenuDataStore {
   if (typeof window === 'undefined') return DEFAULT_MENU
   try {
-    const stored = localStorage.getItem('menu-data')
+    const stored = localStorage.getItem('menu-data-v2')
     return stored ? JSON.parse(stored) : DEFAULT_MENU
   } catch {
     return DEFAULT_MENU
@@ -142,6 +131,6 @@ export function getMenuData(): MenuDataStore {
 // Save menu to localStorage
 export function saveMenuData(data: MenuDataStore) {
   if (typeof window !== 'undefined') {
-    localStorage.setItem('menu-data', JSON.stringify(data))
+    localStorage.setItem('menu-data-v2', JSON.stringify(data))
   }
 }

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { CheckCircle, ArrowRight, BookOpen, MessageCircle, TrendingUp, Globe, Users, User, Users2, Target, Sparkles, Coffee, Presentation } from 'lucide-react'
+import { CheckCircle, ArrowRight, BookOpen, MessageCircle, TrendingUp, Globe, Users, User, Users2, Target, Sparkles, Coffee, Presentation, Award } from 'lucide-react'
 
 export default function AllemandPage() {
     const [isDark, setIsDark] = useState(false)
@@ -68,6 +68,14 @@ export default function AllemandPage() {
                                     <div className="flex items-center gap-3">
                                         <TrendingUp className="text-yellow-600" />
                                         <span>Allemand des Affaires</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Globe className="text-yellow-600" />
+                                        <span>Formation en langues étrangères</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Award className="text-yellow-600" />
+                                        <span>Préparation aux attestations internationales</span>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <MessageCircle className="text-yellow-600" />
@@ -168,15 +176,6 @@ export default function AllemandPage() {
                             ))}
                         </div>
 
-                        <div className="mt-16 text-center">
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-3 bg-yellow-600 hover:bg-yellow-700 text-white text-lg font-bold py-4 px-8 rounded-full transition-all shadow-lg"
-                            >
-                                Jetzt Deutsch lernen
-                                <ArrowRight className="w-5 h-5" />
-                            </Link>
-                        </div>
                     </div>
                 </section>
 
@@ -237,6 +236,19 @@ export default function AllemandPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                {/* Final CTA Section */}
+                <section className="py-12 bg-background border-t border-border">
+                    <div className="max-w-7xl mx-auto px-4 text-center">
+                        <Link
+                            href="/contact/inscriptions-en-ligne"
+                            className="inline-flex items-center gap-3 bg-yellow-600 hover:bg-yellow-700 text-white text-xl font-bold py-5 px-10 rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-yellow-600/20"
+                        >
+                            S'inscrire à une session
+                            <ArrowRight className="w-6 h-6" />
+                        </Link>
                     </div>
                 </section>
             </main>

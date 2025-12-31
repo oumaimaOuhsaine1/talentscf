@@ -46,8 +46,13 @@ export default function HeroSection() {
   // Partners and trust/carousel state
   const partners = useMemo(
     () => [
-      { id: 'wesford', name: 'Wesford Genève', logo: '/images/wesford.png' },
-      { id: 'efv', name: 'EFV', logo: '/images/efv.png' },
+      { id: 'wesford', name: 'WESFORD Business School', logo: '/images/wesford.png' },
+      { id: 'cambridge', name: 'Université de CAMBRIDGE', logo: '/cambridge.png' },
+      { id: 'revue', name: 'La Revue de Sciences de Gestion', logo: '/revue.jpg' },
+      { id: 'ublue', name: 'U Blue Hills', logo: '/Ublue.png' },
+      { id: 'efv', name: 'EFV Management', logo: '/images/efv.png' },
+      { id: 'speak', name: 'SPEAK GROUPE', logo: '/digitalspeak.png' },
+      { id: 'loyds', name: 'LOYDS', logo: '/lloyds.PNG' },
     ],
     []
   )
@@ -148,28 +153,60 @@ export default function HeroSection() {
               </p>
             </div>
           </div>
-          <div className="flex flex-wrap justify-center gap-12 sm:gap-16">
-            {partners.map((p) => (
-              <div key={p.id} className="relative group">
-                {/* decorative red circle behind the card */}
-                <div
-                  aria-hidden="true"
-                  className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-40 h-40 rounded-full bg-red-600/10 dark:bg-red-600/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                />
+          <div className="relative mt-8 group/slider">
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => {
+                const container = document.getElementById('partners-slider');
+                if (container) container.scrollBy({ left: -300, behavior: 'smooth' });
+              }}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-30 p-2 bg-white/80 dark:bg-card/80 rounded-full shadow-lg hover:bg-primary hover:text-white transition-all opacity-0 group-hover/slider:opacity-100 border border-border"
+              aria-label="Previous partner"
+            >
+              <ChevronLeft size={24} />
+            </button>
 
-                <div className="bg-white dark:bg-card rounded-2xl p-8 flex flex-col items-center justify-center gap-4 shadow-lg hover:shadow-2xl transform transition-all hover:-translate-y-3 border border-border relative z-10 w-64 h-48">
-                  {/** logo if exists, else placeholder */}
-                  {p.logo ? (
-                    <div className="w-40 h-24 relative">
-                      <Image src={p.logo} alt={p.name} fill className="object-contain" />
+            <button
+              onClick={() => {
+                const container = document.getElementById('partners-slider');
+                if (container) container.scrollBy({ left: 300, behavior: 'smooth' });
+              }}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-30 p-2 bg-white/80 dark:bg-card/80 rounded-full shadow-lg hover:bg-primary hover:text-white transition-all opacity-0 group-hover/slider:opacity-100 border border-border"
+              aria-label="Next partner"
+            >
+              <ChevronRight size={24} />
+            </button>
+
+            {/* Gradient Overlays for smooth edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
+
+            {/* Partners Slider Wrapper */}
+            <div
+              id="partners-slider"
+              className="flex gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory py-4 px-12"
+            >
+              {partners.map((p, idx) => (
+                <div key={`${p.id}-${idx}`} className="flex-shrink-0 snap-center">
+                  <div className="relative group">
+                    <div
+                      aria-hidden="true"
+                      className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-40 h-40 rounded-full bg-red-600/5 dark:bg-red-600/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
+                    />
+                    <div className="bg-white dark:bg-card rounded-2xl p-6 flex flex-col items-center justify-center gap-4 shadow-sm hover:shadow-xl transform transition-all hover:-translate-y-2 border border-border/50 relative z-10 w-56 h-40">
+                      {p.logo ? (
+                        <div className="w-32 h-20 relative">
+                          <Image src={p.logo} alt={p.name} fill className="object-contain transition-all duration-500" />
+                        </div>
+                      ) : (
+                        <div className="w-32 h-20 flex items-center justify-center bg-muted rounded-xl text-xs font-bold text-center px-2">{p.name}</div>
+                      )}
+                      <div className="text-center text-xs font-bold text-foreground/60 group-hover:text-primary transition-colors line-clamp-1">{p.name}</div>
                     </div>
-                  ) : (
-                    <div className="w-40 h-24 flex items-center justify-center bg-muted rounded-xl">{p.name}</div>
-                  )}
-                  <div className="text-center text-base font-bold text-foreground/80">{p.name}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -191,61 +228,126 @@ export default function HeroSection() {
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-16">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="flex flex-col gap-6">
                 {[
                   {
-                    id: 'vision', title: 'Notre Vision', content: "Nous accompagnons les professionnels et les équipes pour développer des compétences durables, favoriser l'innovation et créer des environnements de travail performants et bienveillants.", icon: <Eye size={28} color="#f97316" />
+                    id: 'vision',
+                    number: '01',
+                    title: 'Notre Vision',
+                    color: 'bg-orange-500',
+                    content: (
+                      <div className="space-y-4">
+                        <p>
+                          Notre ambition est de devenir le partenaire de choix en formation et en consulting pour ceux que nous accompagnons.
+                        </p>
+                        <p>
+                          Nous souhaitons aider un maximum de personnes en leur proposant des parcours d'apprentissage et des conseils variés, modernes, conçus pour être un bon investissement pour tous, et surtout, qui font une vraie différence dans leur progression.
+                        </p>
+                      </div>
+                    ),
+                    icon: <Eye size={32} className="text-orange-500" />
                   },
                   {
-                    id: 'mission', title: 'Notre Mission', content: "Nous accompagnons les individus et les organisations pour renforcer les compétences, l'autonomie et la performance durable.", icon: <Flag size={28} color="#f97316" />
+                    id: 'mission',
+                    number: '02',
+                    title: 'Notre Mission',
+                    color: 'bg-blue-600',
+                    content: (
+                      <div className="space-y-4 text-sm">
+                        <p>
+                          Chez nous, notre cœur de métier, c'est de vous proposer une gamme de formations et de services variés et stimulants, élaborés avec grand soin pour votre développement.
+                        </p>
+                        <div className="pl-4 border-l-2 border-blue-200">
+                          <p className="font-semibold mb-1">Nous soutenons :</p>
+                          <ul className="list-disc pl-4 space-y-1">
+                            <li>Les jeunes en quête de savoir (élèves, étudiants, doctorants)</li>
+                            <li>Les professionnels en activité</li>
+                            <li>Les entrepreneurs qui bâtissent leur projet</li>
+                          </ul>
+                        </div>
+                      </div>
+                    ),
+                    icon: <Flag size={32} className="text-blue-600" />
                   },
                   {
-                    id: 'valeurs', title: 'Nos Valeurs', content: "Intégrité, excellence, responsabilité et bienveillance guident nos interventions.", icon: <Star size={28} color="#f97316" />
+                    id: 'valeurs',
+                    number: '03',
+                    title: 'Nos Valeurs',
+                    color: 'bg-purple-600',
+                    content: (
+                      <div className="space-y-3 text-sm">
+                        <p className="font-semibold">Les valeurs de TALENTS Consulting & Formation reposent sur :</p>
+                        <ul className="space-y-2">
+                          <li>
+                            <strong className="text-purple-700">Valeurs fondamentales :</strong> Transparence, responsabilité, intégrité
+                          </li>
+                          <li>
+                            <strong className="text-purple-700">Valeurs de progrès :</strong> Goût de l’effort, persévérance, culture du succès
+                          </li>
+                          <li>
+                            <strong className="text-purple-700">Valeurs professionnelles :</strong> Innovation, créativité
+                          </li>
+                          <li>
+                            <strong className="text-purple-700">Valeurs collectives :</strong> Equité, sentiment d’appartenance
+                          </li>
+                        </ul>
+                      </div>
+                    ),
+                    icon: <Star size={32} className="text-purple-600" />
                   },
                   {
-                    id: 'approche', title: 'Notre Approche', content: "Approche pédagogique active et expérientielle, centrée sur la pratique et l'intelligence collective.", icon: <Compass size={28} color="#f97316" />
+                    id: 'objectif',
+                    number: '04',
+                    title: 'Notre Objectif',
+                    color: 'bg-green-600',
+                    content: (
+                      <div className="space-y-4 text-sm">
+                        <p>
+                          L'objectif fondamental de notre institution est de permettre aux individus de concrétiser leurs aspirations et d'atteindre un niveau d'excellence optimal.
+                        </p>
+                        <p>
+                          Cet accomplissement est rendu possible par le déploiement de dispositifs de formation rigoureusement individualisés, conçus en adéquation étroite avec leurs exigences intrinsèques et leurs projets de développement professionnel et personnel.
+                        </p>
+                      </div>
+                    ),
+                    icon: <Compass size={32} className="text-green-600" />
                   },
-                ].map((card) => {
-                  const flipped = !!flipState[card.id]
+                ].map((card, index) => {
+                  const isEven = index % 2 === 0
                   return (
                     <div
                       key={card.id}
-                      className="relative w-full h-52 perspective group cursor-pointer"
-                      role="button"
-                      tabIndex={0}
-                      aria-pressed={flipped}
-                      onClick={() => setFlipState((s) => ({ ...s, [card.id]: !s[card.id] }))}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault()
-                          setFlipState((s) => ({ ...s, [card.id]: !s[card.id] }))
-                        }
-                      }}
+                      className="relative w-full bg-white rounded-lg shadow-lg overflow-hidden min-h-[180px] flex flex-col md:flex-row"
                     >
-                      <div
-                        className={`relative w-full h-full transition-transform duration-600 transform-style-preserve-3d ${flipped ? 'rotate-y-180' : ''} md:group-hover:rotate-y-180`}
-                        style={{
-                          transformStyle: 'preserve-3d',
-                          WebkitTransformStyle: 'preserve-3d',
-                        }}
-                      >
-                        {/* Front face - dark blue (primary) background */}
-                        <div className="absolute inset-0 rounded-lg shadow-lg p-8 backface-hidden flex flex-col items-center justify-center bg-white text-gray-800">
-                          <div className="flex flex-col items-center gap-3">
-                            <div className="p-2 rounded-md bg-primary/10 text-primary">{card.icon}</div>
-                            <h4 className="text-lg font-semibold">{card.title}</h4>
+                      {/* Left Colored Section (for Even items) */}
+                      {isEven && (
+                        <div className={`w-full md:w-32 ${card.color} flex flex-row md:flex-col items-center justify-between md:justify-center p-4 md:p-0 text-white`}>
+                          <span className="text-3xl font-bold opacity-80">{card.number}</span>
+                          <div className="bg-white p-3 rounded-full shadow-md mt-0 md:mt-4">
+                            {card.icon}
                           </div>
                         </div>
+                      )}
 
-                        {/* Back face - content paragraph (lighter overlay) */}
-                        <div
-                          className="absolute inset-0 rounded-lg shadow-lg p-6 backface-hidden bg-white text-gray-800 flex items-center justify-center"
-                          style={{ transform: 'rotateY(180deg)' }}
-                        >
-
-                          <p className="text-sm text-gray-700 text-center">{card.content}</p>
+                      {/* Content Section */}
+                      <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-white text-gray-800">
+                        <h4 className={`text-xl font-bold mb-4 ${card.color.replace('bg-', 'text-')}`}>
+                          {card.title}
+                        </h4>
+                        <div className="text-gray-600 leading-relaxed text-sm md:text-base">
+                          {card.content}
                         </div>
                       </div>
+
+                      {/* Right Colored Section (for Odd items) */}
+                      {!isEven && (
+                        <div className={`w-full md:w-32 ${card.color} flex flex-row-reverse md:flex-col items-center justify-between md:justify-center p-4 md:p-0 text-white order-first md:order-last`}>
+                          <span className="text-3xl font-bold opacity-80">{card.number}</span>
+                          <div className="bg-white p-3 rounded-full shadow-md mt-0 md:mt-4">
+                            {card.icon}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )
                 })}
@@ -255,58 +357,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Trusted by — simple image cards */}
 
-      <div className="relative z-10 mt-12 py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-
-          {/* Titre centré / orange / gras */}
-          <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-primary uppercase">Ils nous ont fait confiance</h3>
-          </div>
-
-          <div className="flex items-center gap-4">
-
-            {/* Bouton précédent */}
-            <button
-              onClick={() => setTrustIndex((i) => (i - 1 + trustLogos.length) % trustLogos.length)}
-              className="p-2 rounded-md bg-gray-300 hover:bg-gray-400 text-gray-700"
-              aria-label="Précédent"
-            >
-              <ChevronLeft size={18} />
-            </button>
-
-            {/* Slider */}
-            <div className="flex-1 overflow-hidden">
-              <div
-                className="flex gap-4 transition-transform duration-500"
-                style={{ transform: `translateX(-${trustIndex * (100 / trustVisible)}%)` }}
-              >
-                {trustLogos.concat(trustLogos).map((t, idx) => (
-                  <div
-                    key={`${t.id}-${idx}`}
-                    className="min-w-[25%] flex-shrink-0 bg-white/70 backdrop-blur-md rounded-lg p-6 flex items-center justify-center shadow-sm h-40"
-                  >
-                    <div className="w-48 h-24 relative">
-                      <Image src={t.logo} alt={`trust-${t.id}`} fill className="object-contain" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Bouton suivant */}
-            <button
-              onClick={() => setTrustIndex((i) => (i + 1) % trustLogos.length)}
-              className="p-2 rounded-md bg-gray-300 hover:bg-gray-400 text-gray-700"
-              aria-label="Suivant"
-            >
-              <ChevronRight size={18} />
-            </button>
-
-          </div>
-        </div>
-      </div>
     </section>
   )
 }

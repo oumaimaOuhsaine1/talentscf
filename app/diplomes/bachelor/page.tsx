@@ -130,20 +130,38 @@ export default function BachelorPage() {
                             ))}
                         </div>
 
-                        {/* CTA Button */}
-                        <div className="mt-16 text-center">
-                            <a
-                                href="https://www.wesford.ifc.fr/formation/?_niveau=bac-plus-3"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-3 bg-[#005A9C] hover:bg-[#003E6B] text-white text-lg font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl"
-                            >
-                                Consulter le programme complet
-                                <ArrowRight className="w-5 h-5" />
-                            </a>
-                            <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                                Vous serez redirigé vers le site officiel de Wesford
-                            </p>
+                        {/* Programme table (replaces CTA) */}
+                        <div className="mt-12">
+                            <h3 className="text-2xl font-semibold mb-4 text-center text-[#005A9C]">Programmes Bachelor</h3>
+
+                            <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+                                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                    <thead className="bg-[#003E6B]">
+                                        <tr>
+                                            <th scope="col" className="px-6 py-3 text-left text-sm font-medium text-white">
+                                                Thème
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700">
+                                        {[
+                                            'Responsable de clientèle Banque Finance Assurance',
+                                            'Responsable en Développement Commercial et Marketing',
+                                            'Chargé(e) de Communication Digitale et Évènementiel',
+                                            'Ressources Humaines E-GRH',
+                                            'Logistique et Transport (Stratégie achats et approvisionnements)',
+                                            'Chargé(e) de développement de produit de tourisme',
+                                            'Bachelor Informatique et Cybersécurité'
+                                        ].map((row, idx) => (
+                                            <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-900">
+                                                <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                                                    {row}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </section>

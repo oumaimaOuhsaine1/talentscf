@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { CheckCircle, ArrowRight, BookOpen, MessageCircle, Award, Briefcase, Users, User, Users2, Target, Sparkles, Coffee, Presentation } from 'lucide-react'
+import { CheckCircle, ArrowRight, BookOpen, MessageCircle, Award, Briefcase, Users, User, Users2, Target, Sparkles, Coffee, Presentation, Plane, Globe } from 'lucide-react'
 
 export default function AnglaisPage() {
     const [isDark, setIsDark] = useState(false)
@@ -68,6 +68,14 @@ export default function AnglaisPage() {
                                     <div className="flex items-center gap-3">
                                         <Briefcase className="text-red-600" />
                                         <span>Anglais Professionnel</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Globe className="text-red-600" />
+                                        <span>Formation en langues étrangères</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Award className="text-red-600" />
+                                        <span>Préparation aux attestations internationales</span>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <MessageCircle className="text-red-600" />
@@ -168,14 +176,55 @@ export default function AnglaisPage() {
                             ))}
                         </div>
 
-                        <div className="mt-16 text-center">
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white text-lg font-bold py-4 px-8 rounded-full transition-all shadow-lg"
-                            >
-                                Join our classes now
-                                <ArrowRight className="w-5 h-5" />
-                            </Link>
+                    </div>
+                </section>
+
+                {/* Partnership and Travel Section */}
+                <section className="py-20 bg-background overflow-hidden border-y border-border/50">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                            {/* Cambridge Partnership */}
+                            <div className="space-y-8 animate-fade-in-left">
+                                <h2 className="text-3xl font-bold text-red-600 flex items-center gap-3">
+                                    <Award className="w-10 h-10" />
+                                    Diplômes en langue anglaise
+                                </h2>
+                                <p className="text-lg text-muted-foreground leading-relaxed">
+                                    En partenariat avec <strong>l'Université de CAMBRIDGE</strong>, nous vous offrons l'opportunité d'obtenir des diplômes certifiés et reconnus à l'échelle internationale. Validez vos compétences avec l'excellence académique de Cambridge et propulsez votre carrière vers de nouveaux sommets.
+                                </p>
+                                <div className="flex items-center justify-center gap-12 p-8 bg-white dark:bg-card rounded-3xl shadow-xl border border-border hover:shadow-2xl transition-shadow">
+                                    <div className="relative w-32 h-32 group">
+                                        <Image src="/images/logo.jpg" alt="Centre Logo" fill className="object-contain" />
+                                    </div>
+                                    <div className="text-4xl font-bold text-red-600">+</div>
+                                    <div className="relative w-40 h-32 group">
+                                        <Image src="/cambridge.png" alt="Cambridge Logo" fill className="object-contain" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* London Trips */}
+                            <div className="space-y-8 animate-fade-in-right">
+                                <h2 className="text-3xl font-bold text-red-600 flex items-center gap-3">
+                                    <Plane className="w-10 h-10" />
+                                    Voyages linguistiques à Londres
+                                </h2>
+                                <p className="text-lg text-muted-foreground leading-relaxed">
+                                    Découvrez Londres tout en apprenant ! Nos voyages linguistiques offrent une immersion totale au cœur de la capitale britannique. Alliez cours intensifs et découvertes culturelles pour une progression fulgurante dans un environnement authentique et stimulant.
+                                </p>
+                                <div className="relative h-[300px] w-full rounded-3xl overflow-hidden shadow-2xl group">
+                                    <Image
+                                        src="/images/london_trip.png"
+                                        alt="Voyage à Londres"
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
+                                        <span className="text-white font-bold text-2xl uppercase tracking-widest mb-2">Expérience Londres</span>
+                                        <div className="h-1 w-20 bg-red-600 group-hover:w-32 transition-all duration-500"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -237,6 +286,19 @@ export default function AnglaisPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                {/* Final CTA Section */}
+                <section className="py-12 bg-background border-t border-border">
+                    <div className="max-w-7xl mx-auto px-4 text-center">
+                        <Link
+                            href="/contact/inscriptions-en-ligne"
+                            className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white text-xl font-bold py-5 px-10 rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-red-600/20"
+                        >
+                            S'inscrire à une session
+                            <ArrowRight className="w-6 h-6" />
+                        </Link>
                     </div>
                 </section>
             </main>

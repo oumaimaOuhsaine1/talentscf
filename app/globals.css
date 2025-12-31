@@ -183,19 +183,17 @@
 }
 
 /* Draw line animation */
-@keyframes draw-line {
-  from {
-    width: 0;
-  }
-
-  to {
-    width: 100%;
-  }
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.animate-draw-line {
-  animation: draw-line 1s ease-out 0.5s forwards;
-  width: 0;
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 /* Hide scrollbar */

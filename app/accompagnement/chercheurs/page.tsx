@@ -59,24 +59,13 @@ export default function ChercheursPage() {
                             </div>
                         </div>
 
-                        <div className="bg-card p-10 rounded-3xl shadow-2xl border border-border">
-                            <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
-                                <CheckCircle className="text-primary" /> Nos Services Dédiés
-                            </h3>
-                            <ul className="space-y-6">
-                                {[
-                                    "Accompagnement dans le choix du sujet et de la problématique.",
-                                    "Soutien à l'élaboration du cadre théorique et conceptuel.",
-                                    "Optimisation des protocoles de recherche et d'expérimentation.",
-                                    "Assistance à la publication dans des revues internationales indexées.",
-                                    "Préparation intensive à la soutenance de thèse."
-                                ].map((item, id) => (
-                                    <li key={id} className="flex items-start gap-4">
-                                        <div className="h-2 w-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                                        <span className="text-muted-foreground">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
+                        <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl">
+                            <Image
+                                src="/images/competence.jpg"
+                                alt="Accompagnement Chercheurs"
+                                fill
+                                className="object-cover"
+                            />
                         </div>
                     </div>
                 </section>

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { CheckCircle, ArrowRight, BookOpen, MessageCircle, Award, Users, User, Users2, Target, Sparkles, Coffee, Presentation } from 'lucide-react'
+import { CheckCircle, ArrowRight, BookOpen, MessageCircle, TrendingUp, Globe, Users, User, Users2, Target, Sparkles, Coffee, Presentation, Award } from 'lucide-react'
 
 export default function FrancaisPage() {
     const [isDark, setIsDark] = useState(false)
@@ -68,6 +68,14 @@ export default function FrancaisPage() {
                                     <div className="flex items-center gap-3">
                                         <Award className="text-primary" />
                                         <span>Préparation DELF/DALF</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <BookOpen className="text-primary" />
+                                        <span>Formation en langues étrangères</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <Award className="text-primary" />
+                                        <span>Préparation aux attestations internationales</span>
                                     </div>
                                     <div className="flex items-center gap-3">
                                         <Users className="text-primary" />
@@ -168,15 +176,6 @@ export default function FrancaisPage() {
                             ))}
                         </div>
 
-                        <div className="mt-16 text-center">
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-4 px-8 rounded-full transition-all shadow-lg"
-                            >
-                                S'inscrire à une session
-                                <ArrowRight className="w-5 h-5" />
-                            </Link>
-                        </div>
                     </div>
                 </section>
 
@@ -237,6 +236,19 @@ export default function FrancaisPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                {/* Final CTA Section */}
+                <section className="py-12 bg-background border-t border-border">
+                    <div className="max-w-7xl mx-auto px-4 text-center">
+                        <Link
+                            href="/contact/inscriptions-en-ligne"
+                            className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground text-xl font-bold py-5 px-10 rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-primary/20"
+                        >
+                            S'inscrire à une session
+                            <ArrowRight className="w-6 h-6" />
+                        </Link>
                     </div>
                 </section>
             </main>

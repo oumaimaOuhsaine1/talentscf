@@ -50,10 +50,10 @@ export default function QuiSommesNousPage() {
                             {/* Image */}
                             <div className="relative h-[300px] rounded-lg overflow-hidden shadow-lg">
                                 <Image
-                                    src="/images/centre.png"
-                                    alt="Centre Talents Consulting & Formation"
+                                    src="/images/image.png"
+                                    alt="Logo Talents Consulting & Formation"
                                     fill
-                                    className="object-cover"
+                                    className="object-contain p-4"
                                     quality={100}
                                 />
                             </div>
@@ -65,10 +65,22 @@ export default function QuiSommesNousPage() {
                                 </h2>
                                 <div className="space-y-4">
                                     <p className="text-base text-foreground/80 leading-relaxed">
-                                        Le Centre Emway a été créé en Août 2010 en vue de faire bénéficier le Maroc de l'expertise acquise dans d'autres pays, notamment le Canada et la France, dans les domaines du coaching, de la PNL, de l'Hypnose et de la formation en développement personnel ainsi que dans les champs de l'accompagnement des individus, des équipes et des entreprises.
+                                        TALENTS Consulting & Formation est un centre de formation et de consulting spécialisé dans le développement des compétences humaines, académiques et professionnelles.
                                     </p>
                                     <p className="text-base text-foreground/80 leading-relaxed">
-                                        Emway intervient aussi dans le domaine du sport en accompagnant les athlètes et les équipes sportives pour optimiser leurs performances et atteindre l'excellence.
+                                        Nous accompagnons les étudiants, les professionnels, les entrepreneurs et les chercheurs à travers des formations certifiantes, diplômantes et personnalisées, conçues selon les standards académiques et les exigences du marché du travail.
+                                    </p>
+                                    <p className="text-base text-foreground/80 leading-relaxed">
+                                        Grâce à une approche fondée sur la rigueur scientifique, expertise terrain et innovation pédagogique, avec pour objectif de renforcer l’employabilité, la performance et l’excellence durable de nos bénéficiaires et une évolution professionnelle réussie, au Maroc et à l’international.
+                                    </p>
+                                    <p className="text-base text-foreground/80 leading-relaxed">
+                                        TALENTS Consulting & Formation accompagne le développement des compétences humaines, académiques et professionnelles à travers des formations et des dispositifs d’accompagnement innovants, personnalisés et orientés performance.
+                                    </p>
+                                    <p className="text-base text-foreground/80 leading-relaxed">
+                                        Ce que nous voulons avant tout, c'est proposer à nos bénéficiaires des solutions et services avec une approche vraiment nouvelle, créative et inspirante, pour qu'on se démarque nettement des autres.
+                                    </p>
+                                    <p className="text-xl font-bold font-serif italic text-center leading-relaxed text-[#800020] mt-6">
+                                        Notre but principal est d'apporter à ceux qui nous font confiance des choses et des services qui sortent de l'ordinaire
                                     </p>
                                 </div>
                             </div>
@@ -76,63 +88,7 @@ export default function QuiSommesNousPage() {
                     </div>
                 </section>
 
-                {/* Ils nous font confiance Section */}
-                <section className="py-20 bg-muted/30">
-                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-12">
-                            Ils nous ont fait <span style={{ color: '#FF8A00' }}>Confiance</span>
-                        </h2>
 
-                        {/* Carousel Container */}
-                        <div className="relative">
-                            {/* Previous Button */}
-                            <button
-                                onClick={() => {
-                                    const container = document.getElementById('logos-container');
-                                    if (container) container.scrollBy({ left: -300, behavior: 'smooth' });
-                                }}
-                                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300"
-                                aria-label="Previous"
-                            >
-                                <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                </svg>
-                            </button>
-
-                            {/* Logos Slider */}
-                            <div
-                                id="logos-container"
-                                className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-12"
-                                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                            >
-                                {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                                    <div
-                                        key={item}
-                                        className="flex-shrink-0 w-64 h-32 flex items-center justify-center p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-200"
-                                    >
-                                        <div className="text-center text-muted-foreground font-semibold">
-                                            Logo {item}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Next Button */}
-                            <button
-                                onClick={() => {
-                                    const container = document.getElementById('logos-container');
-                                    if (container) container.scrollBy({ left: 300, behavior: 'smooth' });
-                                }}
-                                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-300"
-                                aria-label="Next"
-                            >
-                                <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </section>
 
                 {/* Domaines de compétences Section */}
                 <section className="relative py-20 overflow-hidden">
