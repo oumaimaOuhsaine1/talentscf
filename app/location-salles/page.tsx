@@ -91,6 +91,15 @@ const rooms: Room[] = [
 export default function LocationSallePage() {
     const [isDark, setIsDark] = useState(false)
     const [selectedRoom, setSelectedRoom] = useState<string | null>(null)
+    const [showModal, setShowModal] = useState(false)
+    const [form, setForm] = useState({
+        nom: '',
+        prenom: '',
+        telephone: '',
+        type: 'renseignement',
+        message: ''
+    })
+    const [submitting, setSubmitting] = useState(false)
 
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
@@ -200,13 +209,73 @@ export default function LocationSallePage() {
                                         </div>
 
                                         {/* CTA Button */}
-                                        <button className="mt-6 w-full bg-[#005A9C] hover:bg-[#003E6B] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 text-sm">
+                                        <button
+                                            onClick={() => { setSelectedRoom(room.id); setShowModal(true) }}
+                                            className="mt-6 w-full bg-[#005A9C] hover:bg-[#003E6B] text-white font-bold py-3 px-6 rounded-lg transition-colors duration-300 text-sm"
+                                        >
                                             Réserver cette salle
                                         </button>
                                     </div>
                                 </div>
                             ))}
                         </div>
+
+                        {/* Modal - Reservation Form */}
+                        {showModal && (
+                            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+                                <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-lg mx-4 p-6 shadow-lg">
+                                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Réserver / Renseignements</h3>
+                                    <form onSubmit={async (e) => {
+                                        e.preventDefault()
+                                        if (submitting) return
+                                        setSubmitting(true)
+                                        try {
+                                            const payload = { ...form, room_id: selectedRoom }
+                                            await fetch('/api/location-reservations', {
+                                                method: 'POST',
+                                                headers: { 'Content-Type': 'application/json' },
+                                                body: JSON.stringify(payload)
+                                            })
+                                            alert('Merci — votre demande a été envoyée.')
+                                            setForm({ nom: '', prenom: '', telephone: '', type: 'renseignement', message: '' })
+                                            setShowModal(false)
+                                        } catch (err) {
+                                            console.error(err)
+                                            alert('Erreur lors de l\'envoi. Réessayez plus tard.')
+                                        } finally { setSubmitting(false) }
+                                    }}>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                            <input value={form.nom} onChange={(e) => setForm({ ...form, nom: e.target.value })} placeholder="Nom" required className="p-2 border rounded bg-white dark:bg-gray-700" />
+                                            <input value={form.prenom} onChange={(e) => setForm({ ...form, prenom: e.target.value })} placeholder="Prénom" required className="p-2 border rounded bg-white dark:bg-gray-700" />
+                                        </div>
+                                        <div className="mt-3">
+                                            <input value={form.telephone} onChange={(e) => setForm({ ...form, telephone: e.target.value })} placeholder="Téléphone" required className="w-full p-2 border rounded bg-white dark:bg-gray-700" />
+                                        </div>
+                                        <div className="mt-3">
+                                            <div className="flex items-center gap-4">
+                                                <label className="flex items-center gap-2">
+                                                    <input type="radio" name="type" value="renseignement" checked={form.type === 'renseignement'} onChange={(e) => setForm({ ...form, type: e.target.value })} />
+                                                    <span className="ml-1">Renseignement</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input type="radio" name="type" value="reservation" checked={form.type === 'reservation'} onChange={(e) => setForm({ ...form, type: e.target.value })} />
+                                                    <span className="ml-1">Réservation</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className="mt-3">
+                                            <textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Votre message" rows={4} className="w-full p-2 border rounded bg-white dark:bg-gray-700" />
+                                        </div>
+                                        <div className="mt-4 flex items-center gap-3">
+                                            <button type="submit" disabled={submitting} className="bg-[#005A9C] text-white px-4 py-2 rounded">
+                                                {submitting ? 'Envoi...' : 'Envoyer'}
+                                            </button>
+                                            <button type="button" onClick={() => setShowModal(false)} className="px-4 py-2 rounded border">Annuler</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        )}
 
                         {/* Additional Info Section */}
                         <div className="mt-16 bg-gradient-to-r from-[#005A9C]/10 to-[#00AEEF]/10 dark:from-[#005A9C]/20 dark:to-[#00AEEF]/20 rounded-2xl p-8">

@@ -45,26 +45,31 @@ export const DEFAULT_MENU: MenuDataStore = {
         { id: 'bilan-competences', label: 'Bilan de compétences', href: '/coaching-soft-skills-pnl/bilan-competences' },
       ],
     },
-
     {
-      id: 'diplomes',
-      label: 'Diplômes',
-      href: '/diplomes',
-      image: '/certificate-achievement.jpg',
+      id: 'consulting',
+      label: 'Consulting',
+      href: '/consulting',
+      image: '/coaching-consultation.jpg',
       children: [
-        { id: 'bachelor', label: 'Bachelor', href: '/diplomes/bachelor' },
-        { id: 'mba', label: 'MBA', href: '/diplomes/mba' },
-        { id: 'dba', label: 'DBA', href: '/diplomes/dba' },
-      ],
-    },
-    {
-      id: 'formations-certifiantes',
-      label: 'Formations certifiantes internationales',
-      href: '/formations-certifiantes',
-      image: '/certificate-achievement.jpg',
-      children: [
-        { id: 'u-blue-hills', label: 'U Blue Hills', href: '/formations-certifiantes/u-blue-hills' },
-        { id: 'revue-sciences-gestion', label: 'La Revue de Sciences de Gestion', href: '/formations-certifiantes/revue-sciences-gestion' },
+        {
+          id: 'diplomes-group',
+          label: 'Diplômes',
+          href: '/diplomes',
+          children: [
+            { id: 'bachelor', label: 'Bachelor', href: '/diplomes/bachelor' },
+            { id: 'mba', label: 'MBA', href: '/diplomes/mba' },
+            { id: 'dba', label: 'DBA', href: '/diplomes/dba' },
+          ],
+        },
+        {
+          id: 'formations-certifiantes-group',
+          label: 'Formations certifiantes internationales',
+          href: '/formations-certifiantes',
+          children: [
+            { id: 'u-blue-hills', label: 'U Blue Hills', href: '/formations-certifiantes/u-blue-hills' },
+            { id: 'revue-sciences-gestion', label: 'La Revue de Sciences de Gestion', href: '/formations-certifiantes/revue-sciences-gestion' },
+          ],
+        },
       ],
     },
     {
@@ -89,6 +94,11 @@ export const DEFAULT_MENU: MenuDataStore = {
         { id: 'allemand', label: 'Allemand', href: '/langues/allemand', image: '/images/allemand.avif' },
         { id: 'espagnol', label: 'Espagnol', href: '/langues/espagnol', image: '/images/espagnol.avif' },
       ],
+    },
+    {
+      id: 'blog',
+      label: 'Blog',
+      href: '/blog',
     },
     {
       id: 'actualites',

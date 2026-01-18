@@ -106,9 +106,9 @@ export default function HeroSection() {
               <div className="relative z-30 max-w-7xl mx-auto h-full px-6 sm:px-8 lg:px-12 flex items-center">
                 <div className="max-w-2xl text-white">
 
-                  <h2 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                  <h1 className="mt-6 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
                     {s.title}
-                  </h2>
+                  </h1>
                   {s.subtitle && (
                     <p className="mt-4 text-lg text-white/90 leading-relaxed">{s.subtitle}</p>
                   )}
@@ -148,9 +148,9 @@ export default function HeroSection() {
             <h3 className="text-3xl md:text-4xl font-bold text-primary uppercase">Nos partenaires internationaux</h3>
             <div className="mt-3 inline-flex items-center justify-center gap-3">
               <span className="w-1.5 h-6 rounded-full bg-red-600" aria-hidden="true" />
-              <p className="text-base md:text-lg text-foreground/70">
+              <h6 className="text-base md:text-lg text-foreground/70 font-normal">
                 Impact Global <span className="text-red-600 font-semibold">Excellence</span> Partenariat Confiance Innovation
-              </p>
+              </h6>
             </div>
           </div>
           <div className="relative mt-8 group/slider">
@@ -331,9 +331,9 @@ export default function HeroSection() {
 
                       {/* Content Section */}
                       <div className="flex-1 p-6 md:p-8 flex flex-col justify-center bg-white text-gray-800">
-                        <h4 className={`text-xl font-bold mb-4 ${card.color.replace('bg-', 'text-')}`}>
+                        <h3 className={`text-xl font-bold mb-4 ${card.color.replace('bg-', 'text-')}`}>
                           {card.title}
-                        </h4>
+                        </h3>
                         <div className="text-gray-600 leading-relaxed text-sm md:text-base">
                           {card.content}
                         </div>

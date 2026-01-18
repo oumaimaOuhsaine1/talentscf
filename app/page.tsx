@@ -7,7 +7,6 @@ import HeroSection from '@/components/hero-section'
 import ServicesSection from '@/components/services-section'
 
 import LanguagesSection from '@/components/languages-section'
-import TestimonialsSection from '@/components/testimonials-section'
 
 
 export default function Home() {
@@ -33,7 +32,6 @@ export default function Home() {
         <ServicesSection />
 
         <LanguagesSection />
-        <TestimonialsSection />
 
       </main>
       <Footer />

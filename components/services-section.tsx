@@ -69,7 +69,7 @@ export default function ServicesSection() {
 
         {/* TITRE */}
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4 uppercase">Nos Services</h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-primary mb-4 uppercase">Nos Services</h3>
         </div>
 
         {/* GRID LAYOUT: 3x3 */}
@@ -117,7 +117,7 @@ function ServiceCard({ icon: Icon, title, description }: ServiceCardProps) {
   return (
     <div className="bg-card p-6 rounded-2xl border border-border shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300 w-72 mx-auto text-center">
       <Icon size={36} className="text-primary mx-auto mb-3" />
-      <h3 className="font-bold text-lg mb-2">{title}</h3>
+      <h6 className="font-bold text-lg mb-2">{title}</h6>
       <p className="text-sm text-foreground/70">{description}</p>
     </div>
   )

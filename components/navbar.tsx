@@ -171,10 +171,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
       )
     }
 
-    // Special layout for 'Diplômes' menu: 1 item left (Bachelor), image center, 1 item right (MBA)
-    if (item.id === 'diplomes') {
-      const leftItems = item.children?.slice(0, 2) || []
-      const rightItems = item.children?.slice(2) || []
+    // Special layout for 'Consulting': Diplômes left, image center, Formations certifiantes right
+    if (item.id === 'consulting') {
+      const diplomesGroup = item.children?.find(c => c.id === 'diplomes-group')
+      const formationsGroup = item.children?.find(c => c.id === 'formations-certifiantes-group')
       const centerImage = item.image || '/certificate-achievement.jpg'
 
       return (
@@ -186,32 +186,45 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
-              <div className="max-w-5xl mx-auto w-[92vw] p-6">
-                <div className="flex items-center justify-center gap-8">
-                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden max-w-xs">
-                    {leftItems.map((child) => (
-                      <DropdownItem
-                        key={child.id}
-                        child={child}
-                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
-                      />
-                    ))}
-                  </div>
-
-                  <div className="flex-shrink-0 px-4">
-                    <div className="relative w-64 h-48 rounded-md overflow-hidden shadow-md">
-                      <Image src={centerImage} alt="diplomes" fill className="object-cover" />
+              <div className="max-w-7xl mx-auto w-[92vw] p-6">
+                <div className="flex items-start justify-center gap-8">
+                  {/* Diplômes Group */}
+                  <div className="flex-1 max-w-xs">
+                    <h4 className="text-primary font-bold mb-4 px-4 uppercase text-sm tracking-wider border-b border-primary/20 pb-2">
+                      {diplomesGroup?.label}
+                    </h4>
+                    <div className="flex flex-col divide-y divide-border rounded-lg overflow-hidden">
+                      {diplomesGroup?.children?.map((child) => (
+                        <DropdownItem
+                          key={child.id}
+                          child={child}
+                          className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                        />
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden max-w-xs">
-                    {rightItems.map((child) => (
-                      <DropdownItem
-                        key={child.id}
-                        child={child}
-                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
-                      />
-                    ))}
+                  {/* Center Image */}
+                  <div className="flex-shrink-0 px-4 self-center">
+                    <div className="relative w-64 h-48 rounded-md overflow-hidden shadow-md">
+                      <Image src={centerImage} alt="consulting" fill className="object-cover" />
+                    </div>
+                  </div>
+
+                  {/* Formations Group */}
+                  <div className="flex-1 max-w-xs">
+                    <h4 className="text-primary font-bold mb-4 px-4 uppercase text-sm tracking-wider border-b border-primary/20 pb-2">
+                      {formationsGroup?.label}
+                    </h4>
+                    <div className="flex flex-col divide-y divide-border rounded-lg overflow-hidden">
+                      {formationsGroup?.children?.map((child) => (
+                        <DropdownItem
+                          key={child.id}
+                          child={child}
+                          className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -427,55 +440,7 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
       )
     }
 
-    // Special layout for 'Formations certifiantes internationales': 1 item left, image center, 1 item right
-    if (item.id === 'formations-certifiantes') {
-      const leftItems = item.children?.slice(0, 1) || []
-      const rightItems = item.children?.slice(1) || []
-      const centerImage = item.image || '/certificate-achievement.jpg'
 
-      return (
-        <div className="group">
-          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
-            {item.label}
-            <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-          </button>
-
-          <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
-              <div className="max-w-5xl mx-auto w-[92vw] p-6">
-                <div className="flex items-center justify-center gap-8">
-                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden max-w-xs">
-                    {leftItems.map((child) => (
-                      <DropdownItem
-                        key={child.id}
-                        child={child}
-                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
-                      />
-                    ))}
-                  </div>
-
-                  <div className="flex-shrink-0 px-4">
-                    <div className="relative w-64 h-48 rounded-md overflow-hidden shadow-md">
-                      <Image src={centerImage} alt="formations" fill className="object-cover" />
-                    </div>
-                  </div>
-
-                  <div className="flex-1 flex flex-col justify-center divide-y divide-border rounded-lg overflow-hidden max-w-xs">
-                    {rightItems.map((child) => (
-                      <DropdownItem
-                        key={child.id}
-                        child={child}
-                        className="text-foreground/100 text-base font-semibold px-6 py-4 hover:-translate-y-1 hover:scale-105 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary/80 border-b border-border last:border-b-0"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    }
 
     // Special layout for 'Accompagnement': 2 items left, image center, 2 items right
     if (item.id === 'accompagnement') {
@@ -614,7 +579,7 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-16">
           {/* Logo - positioned to the left */}
-          <Link href="/" className="flex items-center gap-3 font-bold text-2xl text-primary mr-8 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-3 font-bold text-2xl text-primary mr-16 flex-shrink-0">
             <div className="relative w-16 h-16">
               <Image
                 src="/images/image.png"
@@ -626,7 +591,7 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
           </Link>
 
           {/* Desktop Menu - flex-1 to take remaining space */}
-          <div className="hidden md:flex items-center gap-4 flex-1">
+          <div className="hidden md:flex items-center gap-8 flex-1">
             {menuData.map((item) => (
               <DesktopDropdown key={item.id} item={item} />
             ))}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from 'lucide-react'
+import { DEFAULT_MENU } from '../lib/menu-data'
 
 export default function Footer() {
   return (
@@ -29,29 +30,33 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* À propos */}
+          {/* À propos (from menu data) */}
           <div>
             <h3 className="font-bold mb-4">À propos de Talents Formation & Coaching</h3>
             <ul className="space-y-2">
-              <li><Link href="/apropos/qui-sommes-nous" className="text-foreground/60 hover:text-primary transition-colors text-sm">Qui sommes-nous?</Link></li>
-              <li><Link href="/apropos/notre-equipe" className="text-foreground/60 hover:text-primary transition-colors text-sm">Notre équipe</Link></li>
-              <li><Link href="/apropos/nos-partenaires" className="text-foreground/60 hover:text-primary transition-colors text-sm">Nos partenaires</Link></li>
-              <li><Link href="/apropos/nos-clients" className="text-foreground/60 hover:text-primary transition-colors text-sm">Nos clients</Link></li>
-              <li><Link href="/apropos/centre" className="text-foreground/60 hover:text-primary transition-colors text-sm">Le centre Talents Consulting Formation</Link></li>
-              <li><Link href="/apropos/visite-guidee" className="text-foreground/60 hover:text-primary transition-colors text-sm">Visite guidée</Link></li>
-              <li><Link href="/apropos/calendrier" className="text-foreground/60 hover:text-primary transition-colors text-sm">Calendrier des Formations</Link></li>
+              {(() => {
+                const apropos = DEFAULT_MENU.items.find((i) => i.id === 'apropos')
+                return (apropos?.children || []).map((c) => (
+                  <li key={c.id}>
+                    <Link href={c.href} className="text-foreground/60 hover:text-primary transition-colors text-sm">{c.label}</Link>
+                  </li>
+                ))
+              })()}
             </ul>
           </div>
 
-          {/* Les Formations */}
+          {/* Coaching / Soft-skills (from menu data) */}
           <div>
-            <h3 className="font-bold mb-4">Les Formations</h3>
+            <h3 className="font-bold mb-4">Coaching & Formations</h3>
             <ul className="space-y-2">
-              <li><Link href="/pnl/formation-base" className="text-foreground/60 hover:text-primary transition-colors text-sm">Formation en PNL</Link></li>
-              <li><Link href="/coaching/coaching-equipe" className="text-foreground/60 hover:text-primary transition-colors text-sm">Coaching d'équipe</Link></li>
-              <li><Link href="/coaching/coaching-individuel" className="text-foreground/60 hover:text-primary transition-colors text-sm">Coaching professionnel</Link></li>
-              <li><Link href="/cycles-professionnels/dev-personnel" className="text-foreground/60 hover:text-primary transition-colors text-sm">Cycle de Développement personnel pour manager</Link></li>
-              <li><Link href="/intra-entreprises/commercial-ventes" className="text-foreground/60 hover:text-primary transition-colors text-sm">Commercial & Ventes</Link></li>
+              {(() => {
+                const coaching = DEFAULT_MENU.items.find((i) => i.id === 'coaching-soft-skills-pnl')
+                return (coaching?.children || []).map((c) => (
+                  <li key={c.id}>
+                    <Link href={c.href} className="text-foreground/60 hover:text-primary transition-colors text-sm">{c.label}</Link>
+                  </li>
+                ))
+              })()}
             </ul>
           </div>
 

@@ -131,6 +131,10 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  p {
+    @apply text-justify;
+  }
 }
 
 /* Custom scrollbar styling */
@@ -184,8 +188,13 @@
 
 /* Draw line animation */
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-marquee {

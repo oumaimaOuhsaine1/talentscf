@@ -78,12 +78,12 @@ export default function NosPartenairesPage() {
                 <section className="py-20 bg-background animate-fade-in-up">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="text-center mb-16 space-y-4">
-                            <h2 className="text-3xl md:text-4xl font-bold text-primary uppercase">
+                            <h3 className="text-3xl md:text-4xl font-bold text-primary uppercase">
                                 NOS <span style={{ color: '#BC0C1B' }}>PARTENAIRES</span> INTERNATIONAUX
-                            </h2>
-                            <p className="text-xl text-[#005b96] font-medium">
+                            </h3>
+                            <h6 className="text-xl text-[#005b96] font-medium">
                                 Une renommée et expertise internationale
-                            </p>
+                            </h6>
                         </div>
 
                         {/* Carousel Container */}

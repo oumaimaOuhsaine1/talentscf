@@ -37,10 +37,10 @@ export default function LanguagesSection() {
         <section className="py-20 md:py-32 bg-muted/30">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-6 text-primary">Apprenez une nouvelle langue</h2>
-                    <p className="text-foreground/70 text-lg">
+                    <h3 className="text-3xl md:text-5xl font-bold mb-6 text-primary">Apprenez une nouvelle langue</h3>
+                    <h6 className="text-foreground/70 text-lg font-normal">
                         Choisissez votre destination linguistique et commencez une aventure enrichissante dès aujourd'hui.
-                    </p>
+                    </h6>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -58,9 +58,9 @@ export default function LanguagesSection() {
                                 />
                             </div>
 
-                            <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
+                            <h6 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">
                                 {lang.name}
-                            </h3>
+                            </h6>
 
                             <p className="text-foreground/70 mb-8 flex-grow">
                                 {lang.description}

@@ -9,14 +9,14 @@ import { GraduationCap, CheckCircle, Globe, Plane, Map } from 'lucide-react'
 export default function EtudesEtrangerPage() {
     const [isDark, setIsDark] = useState(false)
 
-    useEffect(() => {
-        const isDarkMoCase à cocher :
-☑️ J’accepte les conditions d’inscription
+//     useEffect(() => {
+//         const isDarkMoCase à cocher :
+//  J’accepte les conditions d’inscription
 
-Bouton :
-S’inscrirede = document.documentElement.classList.contains('dark')
-        setIsDark(isDarkMode)
-    }, [])
+// Bouton :
+// S’inscrirede = document.documentElement.classList.contains('dark')
+//         setIsDark(isDarkMode)
+//     }, [])
 
     const toggleTheme = () => {
         const html = document.documentElement
