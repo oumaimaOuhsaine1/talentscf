@@ -9,7 +9,6 @@ export default function NosPartenairesPage() {
     const [isDark, setIsDark] = useState(false)
     const partnersContainerRef = useRef<HTMLDivElement>(null)
 
-
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
         setIsDark(isDarkMode)
@@ -22,31 +21,24 @@ export default function NosPartenairesPage() {
         localStorage.setItem('theme', isDark ? 'light' : 'dark')
     }
 
-    // Custom hook for auto-sliding carousel (item by item)
-    const useAutoSlide = (ref: React.RefObject<HTMLDivElement>, interval: number = 3000, itemWidth: number = 300) => {
-        useEffect(() => {
-            const container = ref.current
-            if (!container) return
+    // Auto-slide functionality for partners carousel
+    useEffect(() => {
+        const container = partnersContainerRef.current
+        if (!container) return
 
-            const slideTimer = setInterval(() => {
-                if (container) {
-                    const maxScroll = container.scrollWidth - container.clientWidth
-                    const nextScroll = container.scrollLeft + itemWidth
+        const slideTimer = setInterval(() => {
+            const maxScroll = container.scrollWidth - container.clientWidth
+            const nextScroll = container.scrollLeft + 300
 
-                    if (container.scrollLeft >= maxScroll - 10) { // Tolerance
-                        container.scrollTo({ left: 0, behavior: 'smooth' })
-                    } else {
-                        container.scrollTo({ left: nextScroll, behavior: 'smooth' })
-                    }
-                }
-            }, interval)
+            if (container.scrollLeft >= maxScroll - 10) {
+                container.scrollTo({ left: 0, behavior: 'smooth' })
+            } else {
+                container.scrollTo({ left: nextScroll, behavior: 'smooth' })
+            }
+        }, 3000)
 
-            return () => clearInterval(slideTimer)
-        }, [ref, interval, itemWidth])
-    }
-
-    // Apply auto-slide to both containers
-    useAutoSlide(partnersContainerRef, 3000, 300)
+        return () => clearInterval(slideTimer)
+    }, [])
 
 
 
