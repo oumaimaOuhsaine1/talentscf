@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState } from 'react'
 import Image from 'next/image'
@@ -27,7 +29,7 @@ export default function DemandesInfoPage() {
     e.preventDefault()
     setSubmitting(true)
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/contact/info', {
+      const response = await fetch(`${API_BASE_URL}/api/contact/info`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

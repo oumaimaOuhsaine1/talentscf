@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import { Loader2, Calendar as CalendarIcon, Clock, User, Phone, Mail, Building2, Search, MessageSquare, ChevronLeft, ChevronRight, Check, X, AlertCircle, RefreshCcw, ArrowUpDown } from 'lucide-react'
@@ -35,7 +37,7 @@ export default function ReservationsManagement() {
         setLoading(true)
         const token = getToken()
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/rooms/reservations', {
+            const res = await fetch(`${API_BASE_URL}/api/rooms/reservations`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -65,7 +67,7 @@ export default function ReservationsManagement() {
     const updateStatus = async (id: string, newStatus: string) => {
         const token = getToken()
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/rooms/reservations/${id}/status`, {
+            const res = await fetch(`${API_BASE_URL}/api/rooms/reservations/${id}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -122,7 +124,7 @@ export default function ReservationsManagement() {
         setIsDeleting(true)
         const token = getToken()
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/rooms/reservations/${deleteModal.id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/rooms/reservations/${deleteModal.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

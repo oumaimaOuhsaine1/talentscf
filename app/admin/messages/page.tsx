@@ -1,5 +1,7 @@
 'use client'
 
+import { API_BASE_URL } from '@/lib/api-config';
+
 import { useState, useEffect } from 'react'
 import { Trash2, MessageSquare, ClipboardCheck, Loader2, User, Mail, Phone, Calendar, Building, Activity, AlertCircle } from 'lucide-react'
 import { getToken } from '@/lib/auth'
@@ -21,7 +23,7 @@ export default function MessagesManagement() {
     const token = getToken()
     try {
       const endpoint = activeTab === 'info' ? 'info' : 'pre-diagnostic'
-      const response = await fetch(`http://127.0.0.1:5000/api/contact/${endpoint}`, {
+      const response = await fetch(`${API_BASE_URL}/api/contact/${endpoint}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       if (response.ok) {
@@ -42,7 +44,7 @@ export default function MessagesManagement() {
     const token = getToken()
     try {
       const endpoint = activeTab === 'info' ? 'info' : 'pre-diagnostic'
-      const response = await fetch(`http://127.0.0.1:5000/api/contact/${endpoint}/${id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/contact/${endpoint}/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       })

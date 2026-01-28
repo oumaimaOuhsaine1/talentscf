@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect, Suspense } from 'react'
 import Image from 'next/image'
@@ -57,11 +59,11 @@ function InscriptionsContent() {
     setSubmitting(true)
 
     try {
-      let url = 'http://127.0.0.1:5000/api/inscriptions' // Default endpoint
+      let url = `${API_BASE_URL}/api/inscriptions` // Default endpoint
       let body: any = form
 
       if (isOpportunity) {
-        url = 'http://127.0.0.1:5000/api/opportunity-applications'
+        url = `${API_BASE_URL}/api/opportunity-applications`
         body = {
           first_name: form.prenom,
           last_name: form.nom,
@@ -116,7 +118,7 @@ function InscriptionsContent() {
     formData.append('document', file)
 
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/upload/document', {
+      const res = await fetch(`${API_BASE_URL}/api/upload/document`, {
         method: 'POST',
         body: formData
       })

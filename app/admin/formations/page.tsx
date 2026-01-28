@@ -1,5 +1,7 @@
 'use client'
 
+import { API_BASE_URL } from '@/lib/api-config';
+
 import { useState, useEffect } from 'react'
 import { Edit, Trash2, Plus, Loader2, Save, X, Image as ImageIcon, Calendar, Upload } from 'lucide-react'
 import { getToken } from '@/lib/auth'
@@ -38,7 +40,7 @@ export default function FormationsManagement() {
   const fetchFormations = async () => {
     setLoading(true)
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/formations')
+      const res = await fetch(`${API_BASE_URL}/api/formations`)
       const data = await res.json()
       // Ensure data is an array
       if (Array.isArray(data)) {
@@ -73,7 +75,7 @@ export default function FormationsManagement() {
     if (!confirm('Voulez-vous vraiment supprimer cette formation ?')) return
     const token = getToken()
     try {
-      await fetch(`http://127.0.0.1:5000/api/formations/${id}`, {
+      await fetch(`${API_BASE_URL}/api/formations/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -95,7 +97,7 @@ export default function FormationsManagement() {
     body.append('image', file)
 
     try {
-      const res = await fetch('http://127.0.0.1:5000/api/upload/image', {
+      const res = await fetch(`${API_BASE_URL}/api/upload/image`, {
         method: 'POST',
         headers: { 'Authorization': `Bearer ${token}` },
         body
@@ -119,8 +121,8 @@ export default function FormationsManagement() {
     const token = getToken()
     const method = selectedFormation ? 'PUT' : 'POST'
     const url = selectedFormation
-      ? `http://127.0.0.1:5000/api/formations/${selectedFormation.id}`
-      : 'http://127.0.0.1:5000/api/formations'
+      ? `${API_BASE_URL}/api/formations/${selectedFormation.id}`
+      : `${API_BASE_URL}/api/formations`
 
     try {
       const res = await fetch(url, {

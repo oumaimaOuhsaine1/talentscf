@@ -1,5 +1,7 @@
 'use client'
 
+import { API_BASE_URL } from '@/lib/api-config';
+
 import { useState, useEffect } from 'react'
 import { Menu, Bell, User, Mail, GraduationCap, Building2 } from 'lucide-react'
 import Link from 'next/link'
@@ -28,7 +30,7 @@ export default function AdminHeader({ onToggleSidebar }: AdminHeaderProps) {
     const token = getToken()
     const today = new Date().toISOString().split('T')[0]
     try {
-      const response = await fetch(`http://127.0.0.1:5000/api/stats/dashboard?date=${today}`, {
+      const response = await fetch(`${API_BASE_URL}/api/stats/dashboard?date=${today}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       if (response.ok) {

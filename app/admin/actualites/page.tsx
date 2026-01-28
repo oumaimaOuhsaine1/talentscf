@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import { Edit, Trash2, Plus, Loader2, Save, X, Calendar, MapPin, Link as LinkIcon, AlertCircle, Upload, ImageIcon } from 'lucide-react'
@@ -25,7 +27,7 @@ export default function ActualitesManagement() {
         setLoading(true)
         try {
             const endpoint = activeTab === 'events' ? 'events' : activeTab === 'opportunities' ? 'opportunities' : 'announcements'
-            const res = await fetch(`http://127.0.0.1:5000/api/news/${endpoint}`)
+            const res = await fetch(`${API_BASE_URL}/api/news/${endpoint}`)
             const items = await res.json()
             setData(Array.isArray(items) ? items : [])
         } catch (error) {
@@ -46,7 +48,7 @@ export default function ActualitesManagement() {
         const token = getToken()
         const endpoint = activeTab === 'events' ? 'events' : activeTab === 'opportunities' ? 'opportunities' : 'announcements'
         try {
-            await fetch(`http://127.0.0.1:5000/api/news/${endpoint}/${id}`, {
+            await fetch(`${API_BASE_URL}/api/news/${endpoint}/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             })
@@ -62,8 +64,8 @@ export default function ActualitesManagement() {
         const endpoint = activeTab === 'events' ? 'events' : activeTab === 'opportunities' ? 'opportunities' : 'announcements'
         const method = selectedItem ? 'PUT' : 'POST'
         const url = selectedItem
-            ? `http://127.0.0.1:5000/api/news/${endpoint}/${selectedItem.id}`
-            : `http://127.0.0.1:5000/api/news/${endpoint}`
+            ? `${API_BASE_URL}/api/news/${endpoint}/${selectedItem.id}`
+            : `${API_BASE_URL}/api/news/${endpoint}`
 
         try {
             const res = await fetch(url, {
@@ -95,7 +97,7 @@ export default function ActualitesManagement() {
         body.append('image', file)
 
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/upload/image', {
+            const res = await fetch(`${API_BASE_URL}/api/upload/image`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` },
                 body

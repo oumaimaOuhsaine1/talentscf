@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '@/lib/api-config';
 "use client"
 
 import React, { useState, useEffect } from 'react'
@@ -30,7 +31,7 @@ export default function NouveautesFormationsPage() {
 
     const fetchFormations = async () => {
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/formations')
+            const res = await fetch(`${API_BASE_URL}/api/formations`)
             const data = await res.json()
             if (Array.isArray(data)) {
                 setFormations(data)

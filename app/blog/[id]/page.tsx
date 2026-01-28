@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
@@ -40,7 +42,7 @@ export default function BlogPostPage() {
 
     const loadPost = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:5000/api/blog/${params.id}`);
+            const response = await fetch(`${API_BASE_URL}/api/blog/${params.id}`);
             if (response.ok) {
                 const data = await response.json();
                 setPost({

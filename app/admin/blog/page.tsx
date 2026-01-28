@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import { Edit, Trash2, Plus, Loader2, Save, X, Image as ImageIcon, Calendar, Sparkles, Wand2, Eye, Upload } from 'lucide-react'
@@ -40,7 +42,7 @@ export default function BlogManagement() {
     const fetchPosts = async () => {
         setLoading(true)
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/blog')
+            const res = await fetch(`${API_BASE_URL}/api/blog`)
             const data = await res.json()
             if (Array.isArray(data)) {
                 setPosts(data)
@@ -62,7 +64,7 @@ export default function BlogManagement() {
         body.append('image', file)
 
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/upload/image', {
+            const res = await fetch(`${API_BASE_URL}/api/upload/image`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` },
                 body
@@ -87,7 +89,7 @@ export default function BlogManagement() {
         setGenerating(true)
         const token = getToken()
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/blog/generate', {
+            const res = await fetch(`${API_BASE_URL}/api/blog/generate`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -115,7 +117,7 @@ export default function BlogManagement() {
         setGeneratingBatch(true)
         const token = getToken()
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/blog/generate-multiple', {
+            const res = await fetch(`${API_BASE_URL}/api/blog/generate-multiple`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -156,7 +158,7 @@ export default function BlogManagement() {
         if (!confirm('Voulez-vous vraiment supprimer cet article ?')) return
         const token = getToken()
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/blog/${id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/blog/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -174,7 +176,7 @@ export default function BlogManagement() {
         e.preventDefault()
         const token = getToken()
         const method = 'PUT'
-        const url = `http://127.0.0.1:5000/api/blog/${selectedPost?.id}`
+        const url = `${API_BASE_URL}/api/blog/${selectedPost?.id}`
 
         try {
             const res = await fetch(url, {

@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import Image from 'next/image'
 import Navbar from '@/components/navbar'
@@ -17,7 +19,7 @@ interface Room {
     equipments: string[]
 }
 
-const FETCH_URL = 'http://127.0.0.1:5000/api/rooms'
+const FETCH_URL = `${API_BASE_URL}/api/rooms`
 
 export default function LocationSallePage() {
     const [isDark, setIsDark] = useState(false)
@@ -304,7 +306,7 @@ export default function LocationSallePage() {
                                         duration: form.type === 'reservation' ? parseInt(form.duration) : undefined,
                                         message: form.message
                                     }
-                                    await fetch('http://127.0.0.1:5000/api/rooms/reservations', {
+                                    await fetch(`${API_BASE_URL}/api/rooms/reservations`, {
                                         method: 'POST',
                                         headers: { 'Content-Type': 'application/json' },
                                         body: JSON.stringify(payload)

@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '@/lib/api-config';
 "use client"
 
 import React, { useState, useEffect } from 'react'
@@ -15,7 +16,7 @@ export default function AnnoncesPartenariatsPage() {
         const isDarkMode = document.documentElement.classList.contains('dark')
         setIsDark(isDarkMode)
 
-        fetch('http://127.0.0.1:5000/api/news/announcements')
+        fetch(`${API_BASE_URL}/api/news/announcements`)
             .then(res => res.json())
             .then(data => {
                 setItems(Array.isArray(data) ? data : [])

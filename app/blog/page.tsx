@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
@@ -38,7 +40,7 @@ export default function BlogPage() {
 
     const loadBlogPosts = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:5000/api/blog');
+            const response = await fetch(`${API_BASE_URL}/api/blog`);
             if (response.ok) {
                 const data = await response.json();
                 if (data && data.length > 0) {

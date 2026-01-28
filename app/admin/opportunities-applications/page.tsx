@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import { Loader2, Mail, Phone, Calendar, Briefcase, Search, ArrowRight, User, FileText, CreditCard, Image as ImageIcon, Download } from 'lucide-react'
@@ -33,7 +35,7 @@ export default function OpportunityApplicationsPage() {
         setLoading(true)
         const token = getToken()
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/opportunity-applications', {
+            const res = await fetch(`${API_BASE_URL}/api/opportunity-applications`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -72,7 +74,7 @@ export default function OpportunityApplicationsPage() {
         if (!confirm('Voulez-vous vraiment supprimer cette candidature ?')) return
         const token = getToken()
         try {
-            await fetch(`http://127.0.0.1:5000/api/opportunity-applications/${id}`, {
+            await fetch(`${API_BASE_URL}/api/opportunity-applications/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`

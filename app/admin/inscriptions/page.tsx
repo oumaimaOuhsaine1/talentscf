@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect, useMemo } from 'react'
 import {
@@ -46,7 +48,7 @@ export default function InscriptionsManagement() {
         setError(null)
         const token = getToken()
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/inscriptions', {
+            const res = await fetch(`${API_BASE_URL}/api/inscriptions`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             })
 
@@ -141,7 +143,7 @@ export default function InscriptionsManagement() {
         if (!deleteModal.id) return
         const token = getToken();
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/inscriptions/${deleteModal.id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/inscriptions/${deleteModal.id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });

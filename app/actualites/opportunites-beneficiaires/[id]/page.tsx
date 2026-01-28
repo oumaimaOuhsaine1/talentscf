@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/navbar'
@@ -24,7 +26,7 @@ export default function OpportunityDetailsPage() {
         setIsDark(isDarkMode)
 
         if (stringId) {
-            fetch(`http://127.0.0.1:5000/api/news/opportunities/${stringId}`)
+            fetch(`${API_BASE_URL}/api/news/opportunities/${stringId}`)
                 .then(res => {
                     if (!res.ok) throw new Error('Not found')
                     return res.json()

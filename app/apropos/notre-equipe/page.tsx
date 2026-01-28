@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import Image from 'next/image'
 import Navbar from '@/components/navbar'
@@ -27,7 +29,7 @@ export default function NotreEquipePage() {
 
     const fetchMembers = async () => {
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/team')
+            const res = await fetch(`${API_BASE_URL}/api/team`)
             const data = await res.json()
             if (Array.isArray(data)) {
                 setMembers(data)

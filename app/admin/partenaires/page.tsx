@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import { Edit, Trash2, Plus, Loader2, Save, X, Globe, Image as ImageIcon, Upload } from 'lucide-react'
@@ -19,7 +21,7 @@ export default function PartenairesManagement() {
     const fetchPartners = async () => {
         setLoading(true)
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/news/partnerships')
+            const res = await fetch(`${API_BASE_URL}/api/news/partnerships`)
             const data = await res.json()
             setPartners(data)
         } catch (error) {
@@ -39,7 +41,7 @@ export default function PartenairesManagement() {
         if (!confirm('Voulez-vous vraiment supprimer ce partenaire ?')) return
         const token = getToken()
         try {
-            await fetch(`http://127.0.0.1:5000/api/news/partnerships/${id}`, {
+            await fetch(`${API_BASE_URL}/api/news/partnerships/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             })
@@ -59,7 +61,7 @@ export default function PartenairesManagement() {
         body.append('image', file)
 
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/upload/image', {
+            const res = await fetch(`${API_BASE_URL}/api/upload/image`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` },
                 body
@@ -83,8 +85,8 @@ export default function PartenairesManagement() {
         const token = getToken()
         const method = selectedPartner ? 'PUT' : 'POST'
         const url = selectedPartner
-            ? `http://127.0.0.1:5000/api/news/partnerships/${selectedPartner.id}`
-            : 'http://127.0.0.1:5000/api/news/partnerships'
+            ? `${API_BASE_URL}/api/news/partnerships/${selectedPartner.id}`
+            : `${API_BASE_URL}/api/news/partnerships`
 
         try {
             const res = await fetch(url, {

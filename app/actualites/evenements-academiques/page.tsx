@@ -1,3 +1,4 @@
+import { API_BASE_URL } from '@/lib/api-config';
 "use client"
 
 import React, { useState, useEffect } from 'react'
@@ -24,7 +25,7 @@ export default function EvenementsAcademiquesPage() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch('http://127.0.0.1:5000/api/news/events')
+        fetch(`${API_BASE_URL}/api/news/events`)
             .then(res => res.json())
             .then(data => {
                 setEvents(Array.isArray(data) ? data : [])

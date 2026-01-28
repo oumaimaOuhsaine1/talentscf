@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import { Edit, Trash2, Plus, Loader2, Save, X, Image as ImageIcon, Upload } from 'lucide-react'
@@ -34,7 +36,7 @@ export default function TeamManagement() {
     const fetchMembers = async () => {
         setLoading(true)
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/team')
+            const res = await fetch(`${API_BASE_URL}/api/team`)
             const data = await res.json()
             if (Array.isArray(data)) {
                 setMembers(data)
@@ -56,7 +58,7 @@ export default function TeamManagement() {
         body.append('image', file)
 
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/upload/image', {
+            const res = await fetch(`${API_BASE_URL}/api/upload/image`, {
                 method: 'POST',
                 headers: { 'Authorization': `Bearer ${token}` },
                 body
@@ -93,7 +95,7 @@ export default function TeamManagement() {
         if (!deleteModal.id) return
         const token = getToken()
         try {
-            const res = await fetch(`http://127.0.0.1:5000/api/team/${deleteModal.id}`, {
+            const res = await fetch(`${API_BASE_URL}/api/team/${deleteModal.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -117,8 +119,8 @@ export default function TeamManagement() {
         const token = getToken()
         const method = selectedMember ? 'PUT' : 'POST'
         const url = selectedMember
-            ? `http://127.0.0.1:5000/api/team/${selectedMember.id}`
-            : 'http://127.0.0.1:5000/api/team'
+            ? `${API_BASE_URL}/api/team/${selectedMember.id}`
+            : `${API_BASE_URL}/api/team`
 
         try {
             const res = await fetch(url, {

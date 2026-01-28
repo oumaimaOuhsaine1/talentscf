@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import React, { useState } from 'react'
 import { X, Send, User, Users, Mail, Phone, Globe, Award, Loader2, CheckCircle } from 'lucide-react'
@@ -29,7 +31,7 @@ export default function LanguageInscriptionModal({ isOpen, onClose, language }: 
         setSubmitting(true)
 
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/language-inscriptions', {
+            const res = await fetch(`${API_BASE_URL}/api/language-inscriptions`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ ...form, language })

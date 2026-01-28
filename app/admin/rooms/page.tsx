@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import { useState, useEffect } from 'react'
 import { Edit, Trash2, Plus, Loader2, Save, X, Building2, Users, Maximize, Monitor, Upload } from 'lucide-react'
@@ -38,7 +40,7 @@ export default function RoomsManagement() {
     const fetchRooms = async () => {
         setLoading(true)
         try {
-            const res = await fetch('http://127.0.0.1:5000/api/rooms')
+            const res = await fetch(`${API_BASE_URL}/api/rooms`)
             const data = await res.json()
             setRooms(Array.isArray(data) ? data : [])
         } catch (error) {
@@ -65,7 +67,7 @@ export default function RoomsManagement() {
         if (!confirm('Voulez-vous vraiment supprimer cette salle ?')) return
         const token = getToken()
         try {
-            await fetch(`http://127.0.0.1:5000/api/rooms/${id}`, {
+            await fetch(`${API_BASE_URL}/api/rooms/${id}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             })
@@ -89,7 +91,7 @@ export default function RoomsManagement() {
             for (let i = 0; i < files.length; i++) {
                 const body = new FormData()
                 body.append('image', files[i])
-                const res = await fetch('http://127.0.0.1:5000/api/upload/image', {
+                const res = await fetch(`${API_BASE_URL}/api/upload/image`, {
                     method: 'POST',
                     headers: { 'Authorization': `Bearer ${token}` },
                     body
@@ -116,8 +118,8 @@ export default function RoomsManagement() {
         const token = getToken()
         const method = selectedRoom ? 'PUT' : 'POST'
         const url = selectedRoom
-            ? `http://127.0.0.1:5000/api/rooms/${selectedRoom.id}`
-            : 'http://127.0.0.1:5000/api/rooms'
+            ? `${API_BASE_URL}/api/rooms/${selectedRoom.id}`
+            : `${API_BASE_URL}/api/rooms`
 
         const payload = {
             ...formData,

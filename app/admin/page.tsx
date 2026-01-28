@@ -1,5 +1,7 @@
 'use client'
 
+import { API_BASE_URL } from '@/lib/api-config';
+
 import { useState, useEffect } from 'react'
 import {
   BarChart3,
@@ -54,7 +56,7 @@ export default function AdminDashboard() {
     setLoading(true)
     const token = getToken()
     try {
-      let url = 'http://127.0.0.1:5000/api/stats/dashboard'
+      let url = `${API_BASE_URL}/api/stats/dashboard`
       if (monthFilter !== 'all') {
         url += `?month=${monthFilter}&year=${yearFilter}`
       }

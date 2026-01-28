@@ -1,4 +1,6 @@
 'use client'
+import { API_BASE_URL } from '@/lib/api-config';
+
 
 import Image from 'next/image'
 import Navbar from '@/components/navbar'
@@ -16,7 +18,7 @@ export default function NosPartenairesPage() {
         const isDarkMode = document.documentElement.classList.contains('dark')
         setIsDark(isDarkMode)
 
-        fetch('http://127.0.0.1:5000/api/news/partnerships')
+        fetch(`${API_BASE_URL}/api/news/partnerships`)
             .then(res => res.json())
             .then(data => {
                 const fetchedPartners = Array.isArray(data) ? data : []
