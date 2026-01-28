@@ -46,9 +46,9 @@ export const DEFAULT_MENU: MenuDataStore = {
       ],
     },
     {
-      id: 'consulting',
-      label: 'Consulting',
-      href: '/consulting',
+      id: 'diplomes',
+      label: 'Diplômes',
+      href: '/diplomes',
       image: '/coaching-consultation.jpg',
       children: [
         {
@@ -71,6 +71,11 @@ export const DEFAULT_MENU: MenuDataStore = {
           ],
         },
       ],
+    },
+    {
+      id: 'consulting',
+      label: 'Consulting',
+      href: '/consulting',
     },
     {
       id: 'accompagnement',
@@ -106,7 +111,7 @@ export const DEFAULT_MENU: MenuDataStore = {
       href: '/actualites',
       image: '/images/bansection.jpg',
       children: [
-        { id: 'nouveautes-formations', label: 'Nouveautés formations', href: '/actualites/novetautes-formations' },
+        { id: 'nouveautes-formations', label: 'Nouveautés formations', href: '/actualites/nouveautes-formations' },
         { id: 'evenements-academiques', label: 'Événements académiques', href: '/actualites/evenements-academiques' },
         { id: 'opportunites-beneficiaires', label: 'Opportunités pour les bénéficiaires', href: '/actualites/opportunites-beneficiaires' },
         { id: 'annonces-partenariats', label: 'Annonces et partenariats', href: '/actualites/annonces-partenariats' },

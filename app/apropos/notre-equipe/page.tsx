@@ -5,13 +5,39 @@ import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { useState, useEffect } from 'react'
 
+export interface TeamMember {
+    id: string;
+    name: string;
+    role: string;
+    bio: string;
+    image: string;
+    order_index: number;
+}
+
 export default function NotreEquipePage() {
     const [isDark, setIsDark] = useState(false)
+    const [members, setMembers] = useState<TeamMember[]>([])
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
         setIsDark(isDarkMode)
+        fetchMembers()
     }, [])
+
+    const fetchMembers = async () => {
+        try {
+            const res = await fetch('http://127.0.0.1:5000/api/team')
+            const data = await res.json()
+            if (Array.isArray(data)) {
+                setMembers(data)
+            }
+        } catch (error) {
+            console.error('Error fetching team members:', error)
+        } finally {
+            setLoading(false)
+        }
+    }
 
     const toggleTheme = () => {
         const html = document.documentElement
@@ -19,6 +45,13 @@ export default function NotreEquipePage() {
         setIsDark(!isDark)
         localStorage.setItem('theme', isDark ? 'light' : 'dark')
     }
+
+    const expertiseList = [
+        "Des spécialistes titulaires de doctorats et engagés dans la recherche et l'enseignement ;",
+        "Des professionnels certifiés en ingénierie pédagogique ;",
+        "Des praticiens spécialisés en accompagnement individualisé du développement personnel et professionnel;",
+        "Des spécialistes de l’humain, des consultants experts en psychologie cognitive et en dynamique du développement humain."
+    ];
 
     return (
         <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -46,64 +79,83 @@ export default function NotreEquipePage() {
                 {/* Team Members Section */}
                 <section className="py-20 bg-background">
                     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+                        {loading ? (
+                            <div className="flex justify-center py-20">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+                            </div>
+                        ) : (
+                            [...members].sort((a, b) => a.order_index - b.order_index).map((member, idx) => (
+                                <div
+                                    key={member.id}
+                                    className={`flex flex-col md:flex-row gap-10 lg:gap-16 items-start ${idx % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+                                >
+                                    {/* Image Section */}
+                                    <div className="w-full md:w-auto flex justify-center flex-shrink-0 group">
+                                        <div className="relative p-2 bg-white shadow-xl shadow-gray-200 border border-gray-100 rounded-sm transform transition-transform duration-300 hover:scale-105 rotate-0">
+                                            <div className="w-64 h-64 md:w-56 md:h-56 overflow-hidden">
+                                                <Image
+                                                    src={member.image}
+                                                    alt={member.name}
+                                                    width={300}
+                                                    height={300}
+                                                    className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-500"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    {/* Content Section */}
+                                    <div className="flex-1 space-y-4">
+                                        <div>
+                                            <h2 className="text-3xl font-black text-[#00609C] uppercase tracking-wide">
+                                                {member.name}
+                                            </h2>
+                                            <div className="h-1 w-20 bg-[#F97316] mt-2 mb-4"></div>
+                                            {member.role && (
+                                                <p className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-2">
+                                                    {member.role}
+                                                </p>
+                                            )}
+                                        </div>
 
-                        {/* Member 1: SAMIR ZAHIR - Centered */}
-                        <div className="flex flex-col gap-12 items-center text-center max-w-4xl mx-auto">
-                            {/* Image Container */}
-                            <div className="flex justify-center">
-                                <div className="relative w-64 h-64 bg-white p-2 shadow-xl rotate-3 hover:rotate-0 transition-transform duration-300">
-                                    <div className="relative w-full h-full bg-gray-200 overflow-hidden">
-                                        <Image
-                                            src="/images/mrSamir.jpg"
-                                            alt="Samir Zahir"
-                                            fill
-                                            className="object-cover"
-                                        />
+                                        <div className="text-gray-600 dark:text-gray-300 text-justify leading-relaxed whitespace-pre-wrap">
+                                            {member.bio}
+                                        </div>
+
+                                        {/* Keep specific content for the first member if strictly needed, or move it. 
+                                            The user wants the DESIGN. The content 'expertiseList' was hardcoded to idx===0. 
+                                            I will append it after the bio if it's the first member to preserve content but fix layout.
+                                        */}
+                                        {idx === 0 && (
+                                            <div className="mt-8 pt-6 border-t border-gray-100">
+                                                <p className="text-lg text-foreground/80 leading-relaxed mb-4 font-medium">
+                                                    Pour vous accompagner au mieux, notre équipe rassemble des talents variés notamment :
+                                                </p>
+                                                <ul className="space-y-2 pl-4 mb-6">
+                                                    {expertiseList.map((item, index) => (
+                                                        <li key={index} className="flex items-start gap-3 text-sm text-foreground/70">
+                                                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#F97316] flex-shrink-0" />
+                                                            <span className="leading-relaxed">{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <div className="pl-4 border-l-4 border-[#00609C] py-1 bg-blue-50/50 rounded-r-lg">
+                                                    <p className="text-sm text-[#00609C] italic font-medium leading-relaxed">
+                                                        "Cette synergie de compétences assure une approche intégrée..."
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
+                            ))
+                        )}
+
+                        {!loading && members.length === 0 && (
+                            <div className="text-center py-20">
+                                <p className="text-xl text-muted-foreground">Aucun membre d'équipe à afficher.</p>
                             </div>
-
-                            {/* Content */}
-                            <div className="space-y-8 w-full">
-                                <div className="flex flex-col items-center">
-                                    <h2 className="text-3xl md:text-4xl font-bold text-[#005b96] uppercase mb-2">
-                                        ZAHIR SAMIR
-                                    </h2>
-                                    <p className="text-xl font-semibold text-[#FF8A00] uppercase tracking-wide mb-4">
-                                        Directeur du centre 'Talents Consulting & Formations'
-                                    </p>
-                                    <div className="h-1 w-24 bg-[#FF8A00]"></div>
-                                </div>
-
-                                <div className="bg-white/50 backdrop-blur-sm rounded-xl p-8 md:p-10 shadow-sm border border-gray-100 text-left">
-                                    <p className="text-lg text-foreground/80 leading-relaxed mb-6 font-medium">
-                                        Pour vous accompagner au mieux, notre équipe rassemble des talents variés notamment :
-                                    </p>
-
-                                    <ul className="space-y-4 mb-8 pl-4">
-                                        {[
-                                            "Des spécialistes titulaires de doctorats et engagés dans la recherche et l'enseignement ;",
-                                            "Des professionnels certifiés en ingénierie pédagogique ;",
-                                            "Des praticiens spécialisés en accompagnement individualisé du développement personnel et professionnel;",
-                                            "Des spécialistes de l’humain, des consultants experts en psychologie cognitive et en dynamique du développement humain."
-                                        ].map((item, index) => (
-                                            <li key={index} className="flex items-start gap-3 text-base text-foreground/70 group">
-                                                <span className="mt-2 w-2 h-2 rounded-full bg-[#FF8A00] flex-shrink-0 group-hover:scale-125 transition-transform" />
-                                                <span className="leading-relaxed">{item}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <div className="relative pl-6 border-l-4 border-[#005b96] py-2 bg-blue-50/50 rounded-r-lg">
-                                        <p className="text-lg text-[#005b96] italic font-medium leading-relaxed">
-                                            "Cette synergie de compétences assure une approche intégrée, conciliant une rigueur scientifique et conceptuelle, une expertise opérationnelle avérée, et un accompagnement individualisé et stratégique."
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        )}
                     </div>
                 </section>
             </main>
@@ -112,3 +164,4 @@ export default function NotreEquipePage() {
         </div>
     )
 }
+

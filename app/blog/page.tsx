@@ -36,11 +36,27 @@ export default function BlogPage() {
         localStorage.setItem('theme', isDark ? 'light' : 'dark')
     }
 
-    const loadBlogPosts = () => {
-        // Vérifier et générer un nouvel article si nécessaire (toutes les 24h)
-        checkAndGenerateNewPost()
+    const loadBlogPosts = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:5000/api/blog');
+            if (response.ok) {
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    const mappedData = data.map((p: any) => ({
+                        ...p,
+                        readTime: p.read_time || '5 min'
+                    }));
+                    setPosts(mappedData);
+                    setLoading(false);
+                    return;
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching blog posts from backend:', error);
+        }
 
-        // Charger les articles
+        // Fallback to local generator if backend is not available or empty
+        checkAndGenerateNewPost()
         const posts = initializeBlogPosts()
         setPosts(posts)
         setLoading(false)

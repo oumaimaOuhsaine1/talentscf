@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { useState, useEffect } from 'react'
@@ -50,7 +51,7 @@ export default function QuiSommesNousPage() {
                             {/* Image */}
                             <div className="relative h-[300px] rounded-lg overflow-hidden shadow-lg">
                                 <Image
-                                    src="/images/image.png"
+                                    src="/images/logo-talents.png"
                                     alt="Logo Talents Consulting & Formation"
                                     fill
                                     className="object-contain p-4"
@@ -160,6 +161,41 @@ export default function QuiSommesNousPage() {
                                 <p className="text-sm text-foreground/70 leading-relaxed">
                                     3 salles de formation agencées et équipées offrent un espace convivial propice à l'apprentissage et à la pratique professionnelle supervisée.
                                 </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Why Choose Us Section */}
+                <section className="py-20 bg-muted/30">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl border border-border">
+                            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center">
+                                Pourquoi choisir <span className="text-primary">TALENTS Consulting & Formation</span> ?
+                            </h2>
+
+                            <div className="flex flex-wrap justify-center gap-6 mb-12">
+                                {[
+                                    { title: "Expertise en ingénierie de formation", desc: "Une maîtrise complète de la conception pédagogique." },
+                                    { title: "Accompagnement administratif et stratégique", desc: "Soutien dans le montage et le suivi de vos projets." },
+                                    { title: "Connaissance du cadre institutionnel marocain", desc: "Conformité totale avec les régulations locales." },
+                                    { title: "Formations personnalisées et orientées résultats", desc: "Des programmes sur mesure pour vos besoins réels." },
+                                    { title: "Optimisation du financement de la formation", desc: "Maximisez vos remboursements et subventions." }
+                                ].map((item, idx) => (
+                                    <div key={idx} className="bg-muted/50 p-8 rounded-2xl border border-border/50 hover:border-primary/50 hover:shadow-lg transition-all duration-300 group w-full md:w-[calc(33.333%-1rem)] lg:w-[calc(33.333%-1.5rem)] min-h-[160px] flex flex-col justify-center text-center">
+                                        <h3 className="font-bold text-lg mb-3 text-primary group-hover:scale-105 transition-transform">{item.title}</h3>
+                                        <p className="text-sm text-foreground/70 leading-relaxed">{item.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="flex justify-center">
+                                <Link
+                                    href="/contact/pre-diagnostics"
+                                    className="inline-flex items-center gap-2 bg-[#FF8A00] hover:bg-[#E67C00] text-white px-6 py-2 rounded-lg font-semibold text-base transition-all transform hover:scale-105 shadow-md shadow-orange-500/20"
+                                >
+                                    Connectez-vous
+                                </Link>
                             </div>
                         </div>
                     </div>

@@ -6,9 +6,11 @@ import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { CheckCircle, ArrowRight, BookOpen, MessageCircle, Sun, Music, Users, User, Users2, Target, Sparkles, Coffee, Presentation, Globe, Award } from 'lucide-react'
+import LanguageInscriptionModal from '@/components/language-inscription-modal'
 
 export default function EspagnolPage() {
     const [isDark, setIsDark] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
@@ -91,10 +93,10 @@ export default function EspagnolPage() {
 
                         <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
                             <Image
-                                src="/images/image.png"
+                                src="/images/logo-talents.png"
                                 alt="Formation Espagnol"
                                 fill
-                                className="object-cover"
+                                className="object-contain p-8"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
                                 <p className="text-white text-xl font-semibold italic">
@@ -105,48 +107,6 @@ export default function EspagnolPage() {
                     </div>
                 </section>
 
-                {/* Formation Types Section */}
-                <section className="py-20 bg-background">
-                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold mb-4">Types de Formation</h2>
-                            <p className="text-muted-foreground max-w-2xl mx-auto">
-                                Choisissez le format qui correspond le mieux à votre rythme et à vos objectifs.
-                            </p>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {[
-                                {
-                                    icon: <Users className="w-8 h-8 text-orange-600" />,
-                                    title: "Cours en Groupe",
-                                    desc: "Favorise l'interaction et l'apprentissage collaboratif dans une ambiance dynamique."
-                                },
-                                {
-                                    icon: <User className="w-8 h-8 text-orange-600" />,
-                                    title: "Cours Individuels",
-                                    desc: "Un accompagnement sur-mesure pour une progression rapide et ciblée."
-                                },
-                                {
-                                    icon: <Users2 className="w-8 h-8 text-orange-600" />,
-                                    title: "Cours en Binôme",
-                                    desc: "Apprenez avec un collègue ou un ami pour une motivation partagée."
-                                },
-                                {
-                                    icon: <Target className="w-8 h-8 text-orange-600" />,
-                                    title: "Préparation DELE",
-                                    desc: "Entraînement intensif pour réussir vos diplômes d'espagnol comme langue étrangère."
-                                }
-                            ].map((type, index) => (
-                                <div key={index} className="p-8 rounded-2xl bg-muted/50 border border-border hover:border-orange-600/50 transition-all hover:shadow-xl group">
-                                    <div className="mb-6 group-hover:scale-110 transition-transform">{type.icon}</div>
-                                    <h4 className="text-xl font-bold mb-3">{type.title}</h4>
-                                    <p className="text-muted-foreground">{type.desc}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
 
                 {/* Benefits Section */}
                 <section className="py-20 bg-muted/30">
@@ -239,18 +199,23 @@ export default function EspagnolPage() {
                     </div>
                 </section>
 
-                {/* Final CTA Section */}
                 <section className="py-12 bg-background border-t border-border">
                     <div className="max-w-7xl mx-auto px-4 text-center">
-                        <Link
-                            href="/contact/inscriptions-en-ligne"
+                        <button
+                            onClick={() => setShowModal(true)}
                             className="inline-flex items-center gap-3 bg-orange-600 hover:bg-orange-700 text-white text-xl font-bold py-5 px-10 rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-orange-600/20"
                         >
                             S'inscrire à une session
                             <ArrowRight className="w-6 h-6" />
-                        </Link>
+                        </button>
                     </div>
                 </section>
+
+                <LanguageInscriptionModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    language="Espagnol"
+                />
             </main>
 
             <Footer />

@@ -22,17 +22,22 @@ const servicesTop = [
 const servicesMiddle = [
   {
     icon: Lightbulb,
-    title: "Formations Intra-entreprises",
-    description: "Développer les compétences de vos équipes."
+    title: "Consulting",
+    description: "Diagnostic RH, accompagnement et outils RH."
   },
   {
     icon: Brain,
-    title: "Consulting",
-    description: "Diagnostic RH, formation, outils RH."
+    title: "Diplômes",
+    description: "Doctorat (DBA), MBA et Bachelor avec nos partenaires."
   }
 ]
 
 const servicesBottom = [
+  {
+    icon: Lightbulb,
+    title: "Formations Intra-entreprises",
+    description: "Développer les compétences de vos équipes."
+  },
   {
     icon: Brain,
     title: "Location de Salles",
@@ -41,12 +46,7 @@ const servicesBottom = [
   {
     icon: Users,
     title: "Formations à la Carte",
-    description: "Programmes sur mesure."
-  },
-  {
-    icon: Zap,
-    title: "Soirées Découverte",
-    description: "Découvrez notre centre & équipe."
+    description: "Programmes sur mesure basés sur vos besoins."
   }
 ]
 
@@ -85,7 +85,7 @@ export default function ServicesSection() {
           {/* Center: LOGO */}
           <div className="flex justify-center items-center p-6">
             <Image
-              src="/images/image.png"
+              src="/images/logo-talents.png"
               width={230}
               height={230}
               alt="Logo centre"

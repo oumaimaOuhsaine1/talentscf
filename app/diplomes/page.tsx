@@ -5,7 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { GraduationCap, ArrowRight, Award, BookOpen, Globe, Briefcase } from 'lucide-react'
+import { GraduationCap, ArrowRight, Award, BookOpen, Globe, Briefcase, ClipboardCheck } from 'lucide-react'
+import InscriptionModal from '@/components/inscription-modal'
 
 const diplomas = [
     {
@@ -44,6 +45,7 @@ const diplomas = [
 
 export default function DiplomesPage() {
     const [isDark, setIsDark] = useState(false)
+    const [selectedDiploma, setSelectedDiploma] = useState<string | null>(null)
 
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
@@ -82,24 +84,42 @@ export default function DiplomesPage() {
                     </div>
                 </section>
 
+                <InscriptionModal
+                    isOpen={!!selectedDiploma}
+                    onClose={() => setSelectedDiploma(null)}
+                    diplomaTitle={selectedDiploma || ''}
+                />
+
                 {/* Hub Section */}
                 <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {diplomas.map((diploma) => (
-                            <Link
+                            <div
                                 key={diploma.id}
-                                href={diploma.href}
-                                className={`group relative bg-card hover:bg-accent transition-all duration-300 p-8 rounded-2xl shadow-lg border-b-4 ${diploma.color} flex flex-col items-center text-center`}
+                                className={`group relative bg-card hover:bg-accent/50 transition-all duration-300 p-8 rounded-2xl shadow-lg border-b-4 ${diploma.color} flex flex-col items-center text-center`}
                             >
                                 <div className="mb-6 p-4 bg-muted rounded-full group-hover:scale-110 transition-transform">
                                     {diploma.icon}
                                 </div>
                                 <h3 className="text-2xl font-bold mb-4 group-hover:text-primary transition-colors">{diploma.name}</h3>
                                 <p className="text-muted-foreground mb-6 flex-1">{diploma.description}</p>
-                                <span className="inline-flex items-center gap-2 text-primary font-semibold">
-                                    Découvrir <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                </span>
-                            </Link>
+
+                                <div className="flex flex-col w-full gap-3">
+                                    <Link
+                                        href={diploma.href}
+                                        className="inline-flex items-center justify-center gap-2 text-primary font-semibold hover:gap-3 transition-all py-2 border border-primary/20 rounded-lg hover:bg-primary/5"
+                                    >
+                                        Découvrir <ArrowRight className="w-4 h-4" />
+                                    </Link>
+                                    <button
+                                        onClick={() => setSelectedDiploma(diploma.name)}
+                                        className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-semibold py-2 rounded-lg hover:bg-primary/90 transition-all shadow-md active:scale-95"
+                                    >
+                                        <ClipboardCheck className="w-4 h-4" />
+                                        S'inscrire
+                                    </button>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </section>

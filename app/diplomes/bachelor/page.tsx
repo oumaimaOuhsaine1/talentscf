@@ -1,13 +1,15 @@
 'use client'
 
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { useState, useEffect } from 'react'
-import { CheckCircle, ArrowRight, GraduationCap, Handshake, Target } from 'lucide-react'
+import { CheckCircle, ArrowRight, GraduationCap, Handshake, Target, ClipboardCheck } from 'lucide-react'
+import InscriptionModal from '@/components/inscription-modal'
 
 export default function BachelorPage() {
     const [isDark, setIsDark] = useState(false)
+    const [showInscriptionModal, setShowInscriptionModal] = useState(false)
 
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
@@ -37,6 +39,12 @@ export default function BachelorPage() {
                         </p>
                     </div>
                 </section>
+
+                <InscriptionModal
+                    isOpen={showInscriptionModal}
+                    onClose={() => setShowInscriptionModal(false)}
+                    diplomaTitle="Bachelor"
+                />
 
                 {/* Collaboration Section */}
                 <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -82,7 +90,7 @@ export default function BachelorPage() {
                         <div className="flex flex-col md:flex-row items-center justify-center gap-8 p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl h-full min-h-[400px]">
                             <div className="relative w-48 h-48 md:w-64 md:h-64 transform hover:scale-110 transition-transform duration-300">
                                 <Image
-                                    src="/images/image.png"
+                                    src="/images/logo-talents.png"
                                     alt="Talents Consulting"
                                     fill
                                     className="object-contain"
@@ -130,37 +138,48 @@ export default function BachelorPage() {
                             ))}
                         </div>
 
-                        {/* Programme table (replaces CTA) */}
-                        <div className="mt-12">
-                            <h3 className="text-2xl font-semibold mb-4 text-center text-[#005A9C]">Programmes Bachelor</h3>
+                        {/* Programme Section */}
+                        <div className="mt-20">
+                            <h3 className="text-2xl font-semibold mb-8 text-center text-[#005A9C]">Programmes Bachelor</h3>
 
-                            <div className="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-700">
+                            <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-sm">
                                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                     <thead className="bg-[#003E6B]">
                                         <tr>
-                                            <th scope="col" className="px-6 py-3 text-left text-sm font-medium text-white">
-                                                Thème
+                                            <th scope="col" className="px-6 py-4 text-left text-sm font-bold text-white uppercase tracking-wider">
+                                                Thème de la formation
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-100 dark:divide-gray-700">
                                         {[
-                                            'Responsable de clientèle Banque Finance Assurance',
-                                            'Responsable en Développement Commercial et Marketing',
-                                            'Chargé(e) de Communication Digitale et Évènementiel',
-                                            'Ressources Humaines E-GRH',
-                                            'Logistique et Transport (Stratégie achats et approvisionnements)',
-                                            'Chargé(e) de développement de produit de tourisme',
-                                            'Bachelor Informatique et Cybersécurité'
+                                            'BACHELOR EN MARKETING & DÉVELOPPEMENT COMMERCIAL',
+                                            'BACHELOR EN RESSOURCES HUMAINES',
+                                            'BACHELOR DIGITAL MARKETING & E-BUSINESS',
+                                            'BACHELOR EN FINANCE Banque & Assurance',
+                                            'BACHELOR EN INTELLIGENCE ARTIFICIELLE',
+                                            'BACHELOR MANAGEMENT DU TOURISME',
+                                            'BACHELOR LOGISTIQUE, TRANSPORT & ACHATS'
                                         ].map((row, idx) => (
-                                            <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-900">
-                                                <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300">
+                                            <tr key={idx} className="hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors">
+                                                <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300 font-medium">
                                                     {row}
                                                 </td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
+                            </div>
+
+                            {/* Inscription Button After Table */}
+                            <div className="mt-16 flex justify-center">
+                                <button
+                                    onClick={() => setShowInscriptionModal(true)}
+                                    className="bg-[#FF8A00] hover:bg-[#E67C00] text-white px-10 py-5 rounded-2xl font-bold text-xl flex items-center gap-3 transition-all transform hover:scale-105 shadow-2xl shadow-orange-500/20 active:scale-95"
+                                >
+                                    <ClipboardCheck className="w-7 h-7" />
+                                    S'inscrire à ce programme
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -6,9 +6,11 @@ import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { CheckCircle, ArrowRight, BookOpen, MessageCircle, Award, Briefcase, Users, User, Users2, Target, Sparkles, Coffee, Presentation, Plane, Globe } from 'lucide-react'
+import LanguageInscriptionModal from '@/components/language-inscription-modal'
 
 export default function AnglaisPage() {
     const [isDark, setIsDark] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
@@ -91,10 +93,10 @@ export default function AnglaisPage() {
 
                         <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
                             <Image
-                                src="/images/image.png"
+                                src="/images/logo-talents.png"
                                 alt="Formation Anglais"
                                 fill
-                                className="object-cover"
+                                className="object-contain p-8"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
                                 <p className="text-white text-xl font-semibold italic">
@@ -194,7 +196,7 @@ export default function AnglaisPage() {
                                 </p>
                                 <div className="flex items-center justify-center gap-12 p-8 bg-white dark:bg-card rounded-3xl shadow-xl border border-border hover:shadow-2xl transition-shadow">
                                     <div className="relative w-32 h-32 group">
-                                        <Image src="/images/logo.jpg" alt="Centre Logo" fill className="object-contain" />
+                                        <Image src="/images/logo-talents.png" alt="Centre Logo" fill className="object-contain" />
                                     </div>
                                     <div className="text-4xl font-bold text-red-600">+</div>
                                     <div className="relative w-40 h-32 group">
@@ -289,18 +291,23 @@ export default function AnglaisPage() {
                     </div>
                 </section>
 
-                {/* Final CTA Section */}
                 <section className="py-12 bg-background border-t border-border">
                     <div className="max-w-7xl mx-auto px-4 text-center">
-                        <Link
-                            href="/contact/inscriptions-en-ligne"
+                        <button
+                            onClick={() => setShowModal(true)}
                             className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white text-xl font-bold py-5 px-10 rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-red-600/20"
                         >
                             S'inscrire à une session
                             <ArrowRight className="w-6 h-6" />
-                        </Link>
+                        </button>
                     </div>
                 </section>
+
+                <LanguageInscriptionModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    language="Anglais"
+                />
             </main>
 
             <Footer />

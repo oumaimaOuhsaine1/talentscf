@@ -1,11 +1,19 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function WhatsAppButton() {
+    const pathname = usePathname()
+
+    // Hide on admin pages
+    if (pathname?.startsWith('/admin')) {
+        return null
+    }
+
     return (
         <Link
-            href="https://wa.me/212661332721"
+            href="https://wa.me/212661698359"
             target="_blank"
             rel="noopener noreferrer"
             className="fixed bottom-6 right-6 z-[100] flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-lg hover:scale-110 transition-transform duration-300 hover:shadow-xl"

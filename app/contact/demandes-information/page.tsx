@@ -26,15 +26,27 @@ export default function DemandesInfoPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSubmitting(true)
-    await new Promise((r) => setTimeout(r, 700))
-    setSubmitting(false)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 3500)
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/contact/info', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+      if (response.ok) {
+        setSubmitted(true)
+        setForm({ nom: '', prenom: '', email: '', telephone: '', sujet: '', message: '' })
+        setTimeout(() => setSubmitted(false), 5000)
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error)
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
-      <Navbar isDark={false} onToggleTheme={() => {}} />
+      <Navbar isDark={false} onToggleTheme={() => { }} />
 
       <main className="flex-1">
         <section className="relative h-56 w-full overflow-hidden bg-gradient-to-r from-[#003E6B] to-[#002845]">
@@ -113,7 +125,7 @@ export default function DemandesInfoPage() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold">Email</h4>
-                        <div className="text-foreground/70">info@talents.ma</div>
+                        <div className="text-foreground/70">contact@talentsgrp.com</div>
                         <div className="text-sm text-foreground/50 mt-1">Réponse dans 24h</div>
                       </div>
                     </div>
@@ -126,7 +138,8 @@ export default function DemandesInfoPage() {
                       </div>
                       <div>
                         <h4 className="text-lg font-bold">Horaires</h4>
-                        <div className="text-foreground/70">Lundi - Vendredi 09:00–21:30</div>
+                        <div className="text-foreground/70 text-sm">Lun - Sam: 09:00 – 22:00</div>
+                        <div className="text-foreground/70 text-sm">Dimanche: 09:00 – 17:30</div>
                       </div>
                     </div>
                   </div>
@@ -139,7 +152,7 @@ export default function DemandesInfoPage() {
             <div className="bg-white dark:bg-gray-800 border border-border rounded-lg overflow-hidden shadow-sm">
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-3">Localisation du centre</h3>
-                <div className="text-foreground/70 mb-4">Bureau N° 45, Centre d'affaire MALIZIA — Allal El Fassi, Marrakech 40000</div>
+                <div className="text-foreground/70 mb-4">Bureau no 40 et no 41, Centre d'affaire MALIZIA — Allal El Fassi, Marrakech 40000</div>
                 <div className="w-full h-72 rounded-md overflow-hidden border">
                   <iframe
                     title="Centre d'affaire MALIZIA - Carte"

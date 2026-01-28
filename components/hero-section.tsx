@@ -18,7 +18,7 @@ const slides: Slide[] = [
     title: 'PNL & Coaching Génératif',
     subtitle: "Développez vos compétences transversales et transformez vos pratiques professionnelles.",
     ctaLabel: 'En savoir plus',
-    ctaHref: '/formations',
+    ctaHref: '/apropos/qui-sommes-nous',
     image:
       'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=60',
   },
@@ -26,7 +26,7 @@ const slides: Slide[] = [
     title: 'Ateliers Soft Skills',
     subtitle: "Communication, leadership et gestion du stress pour des équipes performantes.",
     ctaLabel: 'En savoir plus',
-    ctaHref: '/formations',
+    ctaHref: '/apropos/qui-sommes-nous',
     image:
       'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1600&q=60',
   },
@@ -34,7 +34,7 @@ const slides: Slide[] = [
     title: 'Coaching Individuel',
     subtitle: "Accompagnement personnalisé pour atteindre vos objectifs professionnels.",
     ctaLabel: 'En savoir plus',
-    ctaHref: '/contact',
+    ctaHref: '/apropos/qui-sommes-nous',
     image:
       'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=60',
   },
@@ -51,8 +51,9 @@ export default function HeroSection() {
       { id: 'revue', name: 'La Revue de Sciences de Gestion', logo: '/revue.jpg' },
       { id: 'ublue', name: 'U Blue Hills', logo: '/Ublue.png' },
       { id: 'efv', name: 'EFV Management', logo: '/images/efv.png' },
-      { id: 'speak', name: 'SPEAK GROUPE', logo: '/digitalspeak.png' },
+      { id: 'speak', name: 'SPEAK GROUPE', logo: '/digitalspeak.jpeg' },
       { id: 'loyds', name: 'LOYDS', logo: '/lloyds.PNG' },
+      { id: 'arfa', name: 'ARFA', logo: '/arfa.png' },
     ],
     []
   )

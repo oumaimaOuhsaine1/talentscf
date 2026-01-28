@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { Menu, X, Moon, Sun, ChevronDown } from 'lucide-react'
+import { Menu, X, Moon, Sun, ChevronDown, Phone } from 'lucide-react'
 import { getMenuData, MenuItemConfig } from '@/lib/menu-data'
 import Image from "next/image"
 
@@ -79,10 +79,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
 
       return (
         <div className="group">
-          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+          <Link href={item.href} className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
             {item.label}
             <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-          </button>
+          </Link>
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
@@ -129,10 +129,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
 
       return (
         <div className="group">
-          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+          <Link href={item.href} className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
             {item.label}
             <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-          </button>
+          </Link>
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
@@ -171,18 +171,18 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
       )
     }
 
-    // Special layout for 'Consulting': Diplômes left, image center, Formations certifiantes right
-    if (item.id === 'consulting') {
+    // Special layout for 'Diplômes': Diplômes left, image center, Formations certifiantes right
+    if (item.id === 'diplomes') {
       const diplomesGroup = item.children?.find(c => c.id === 'diplomes-group')
       const formationsGroup = item.children?.find(c => c.id === 'formations-certifiantes-group')
       const centerImage = item.image || '/certificate-achievement.jpg'
 
       return (
         <div className="group">
-          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+          <Link href={item.href} className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
             {item.label}
             <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-          </button>
+          </Link>
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
@@ -241,10 +241,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
 
       return (
         <div className="group">
-          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+          <Link href={item.href} className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
             {item.label}
             <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-          </button>
+          </Link>
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
@@ -284,10 +284,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
 
       return (
         <div className="group">
-          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+          <Link href={item.href} className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
             {item.label}
             <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-          </button>
+          </Link>
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
@@ -339,10 +339,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
 
       return (
         <div className="group">
-          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+          <Link href={item.href} className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
             {item.label}
             <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-          </button>
+          </Link>
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
@@ -394,10 +394,10 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
 
       return (
         <div className="group">
-          <button className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
+          <Link href={item.href} className="flex items-center gap-1 text-foreground/70 hover:text-primary transition-colors text-sm font-medium">
             {item.label}
             <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-          </button>
+          </Link>
 
           <div className="absolute left-0 right-0 top-full mt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             <div className="w-full bg-white dark:bg-background border-t border-border shadow-lg">
@@ -515,41 +515,156 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
     const isOpen = openDropdowns.has(item.id)
     const hasChildren = item.children && item.children.length > 0
 
-    return (
-      <div key={item.id}>
-        <div className="flex items-center justify-between">
-          <Link
-            href={item.href}
-            className="flex-1 flex items-center gap-3 px-4 py-2 text-foreground/70 hover:text-primary hover:bg-muted transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            {item.image && (
-              <div className="relative w-5 h-3 flex-shrink-0">
-                <Image src={item.image} alt={item.label} fill className="object-cover rounded-sm" />
+    // Pour les items de niveau 0 (menu principal mobile)
+    if (depth === 0) {
+      return (
+        <div className="mb-2">
+          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-md border border-border/50 overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all duration-300">
+            <div className="flex items-center justify-between">
+              {!hasChildren ? (
+                <Link
+                  href={item.href}
+                  className="flex-1 flex items-center gap-3 px-5 py-4 text-base font-bold text-foreground hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  <span className="flex-1">{item.label}</span>
+                  <span className="text-primary text-xl">→</span>
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href={item.href}
+                    className="flex-1 flex items-center gap-3 px-5 py-4 text-base font-bold text-foreground hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <span className="flex-1">{item.label}</span>
+                  </Link>
+                  <button
+                    onClick={() => toggleDropdown(item.id)}
+                    className="px-5 py-4 text-primary hover:bg-primary/10 transition-all duration-200"
+                    aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+                  >
+                    <ChevronDown
+                      size={22}
+                      className={`transition-all duration-500 ease-out ${isOpen ? 'rotate-180 text-primary' : 'text-foreground/60'}`}
+                    />
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Sous-menu avec animation */}
+            {hasChildren && (
+              <div
+                className={`
+                  grid transition-all duration-500 ease-in-out
+                  ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}
+                `}
+              >
+                <div className="overflow-hidden">
+                  <div className="p-3 pt-1 space-y-2 bg-gradient-to-b from-primary/5 via-muted/30 to-background/50 border-t border-border/30">
+                    {(item.children || []).map((child, index) => (
+                      <div
+                        key={child.id}
+                        className={`
+                          transform transition-all duration-300 ease-out
+                          ${isOpen ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
+                        `}
+                        style={{ transitionDelay: isOpen ? `${index * 50}ms` : '0ms' }}
+                      >
+                        <MobileDropdown item={child} depth={depth + 1} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
-            {item.label}
-          </Link>
+          </div>
+        </div>
+      )
+    }
+
+    // Pour les items de niveau 1 (sous-menus)
+    if (depth === 1) {
+      return (
+        <div className="rounded-xl bg-white dark:bg-gray-800 border border-border/40 shadow-sm hover:shadow-md hover:border-primary/40 transition-all duration-200 overflow-hidden">
+          <div className="flex items-center justify-between">
+            {!hasChildren ? (
+              <Link
+                href={item.href}
+                className="flex-1 flex items-center gap-3 px-4 py-3.5 text-sm font-semibold text-foreground/90 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.image && (
+                  <div className="relative w-7 h-5 flex-shrink-0 rounded-md overflow-hidden shadow-sm">
+                    <Image src={item.image} alt={item.label} fill className="object-cover" />
+                  </div>
+                )}
+                <span className="flex-1">{item.label}</span>
+                <span className="text-primary/60 text-sm">→</span>
+              </Link>
+            ) : (
+              <>
+                <Link
+                  href={item.href}
+                  className="flex-1 flex items-center gap-3 px-4 py-3.5 text-sm font-semibold text-foreground/90 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.image && (
+                    <div className="relative w-7 h-5 flex-shrink-0 rounded-md overflow-hidden shadow-sm">
+                      <Image src={item.image} alt={item.label} fill className="object-cover" />
+                    </div>
+                  )}
+                  <span className="flex-1">{item.label}</span>
+                </Link>
+                <button
+                  onClick={() => toggleDropdown(item.id)}
+                  className="px-4 py-3.5 text-foreground/60 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                >
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                  />
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Sous-sous-menu */}
           {hasChildren && (
-            <button
-              onClick={() => toggleDropdown(item.id)}
-              className="px-4 py-2 text-foreground/70 hover:text-primary"
+            <div
+              className={`
+                grid transition-all duration-400 ease-in-out
+                ${isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}
+              `}
             >
-              <ChevronDown
-                size={16}
-                className={`transition-transform ${isOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
+              <div className="overflow-hidden">
+                <div className="p-2 space-y-1.5 bg-muted/20 border-t border-border/30">
+                  {(item.children || []).map((child) => (
+                    <MobileDropdown key={child.id} item={child} depth={depth + 1} />
+                  ))}
+                </div>
+              </div>
+            </div>
           )}
         </div>
-        {hasChildren && isOpen && (
-          <div className={`bg-muted/30 border-l-2 border-primary ml-4`}>
-            {(item.children || []).map((child) => (
-              <MobileDropdown key={child.id} item={child} depth={depth + 1} />
-            ))}
+      )
+    }
+
+    // Pour les niveaux plus profonds (niveau 2+)
+    return (
+      <Link
+        href={item.href}
+        className="flex items-center gap-2.5 px-3 py-2.5 text-sm text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-200 border-l-2 border-transparent hover:border-primary"
+        onClick={() => setIsOpen(false)}
+      >
+        {item.image && (
+          <div className="relative w-6 h-4 flex-shrink-0 rounded overflow-hidden">
+            <Image src={item.image} alt={item.label} fill className="object-cover" />
           </div>
         )}
-      </div>
+        <span className="font-medium">{item.label}</span>
+      </Link>
     )
   }
 
@@ -580,9 +695,9 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
         <div className="flex items-center h-16">
           {/* Logo - positioned to the left */}
           <Link href="/" className="flex items-center gap-3 font-bold text-2xl text-primary mr-16 flex-shrink-0">
-            <div className="relative w-16 h-16">
+            <div className="relative w-24 h-24">
               <Image
-                src="/images/image.png"
+                src="/images/logo-talents.png"
                 alt="Logo"
                 fill
                 className="object-contain"
@@ -612,20 +727,37 @@ export default function Navbar({ isDark, onToggleTheme }: NavbarProps) {
         {/* Mobile Menu */}
         {showMobileMenu && (
           <div
-            className={`md:hidden pb-4 border-t border-border max-h-96 overflow-y-auto ${mobileAnim === 'enter' ? 'mobile-open' : mobileAnim === 'exit' ? 'mobile-close' : ''
+            className={`md:hidden absolute left-0 right-0 top-full bg-background/98 backdrop-blur-xl border-b border-border shadow-2xl ${mobileAnim === 'enter' ? 'mobile-open' : mobileAnim === 'exit' ? 'mobile-close' : ''
               }`}
           >
-            {menuData.map((item) => (
-              <MobileDropdown key={item.id} item={item} />
-            ))}
-            <div className="px-4 mt-3">
-              <Link
-                href="/contact"
-                className="block w-full text-center px-4 py-2 bg-primary text-primary-foreground rounded-md font-medium"
-                onClick={() => closeMobileMenu()}
-              >
-                Contact
-              </Link>
+            <div className="max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain">
+              <div className="p-4 space-y-2 bg-gradient-to-b from-primary/5 via-background to-background">
+                {menuData.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className="transform transition-all duration-300"
+                    style={{
+                      transitionDelay: mobileAnim === 'enter' ? `${index * 50}ms` : '0ms',
+                      opacity: mobileAnim === 'enter' ? 1 : 0,
+                      transform: mobileAnim === 'enter' ? 'translateY(0)' : 'translateY(-10px)'
+                    }}
+                  >
+                    <MobileDropdown item={item} />
+                  </div>
+                ))}
+
+                {/* Contact Button */}
+                <div className="pt-4 pb-2">
+                  <Link
+                    href="/contact"
+                    className="flex items-center justify-center gap-2 w-full px-6 py-4 bg-gradient-to-r from-primary via-primary to-blue-600 text-white rounded-2xl font-bold shadow-lg shadow-primary/30 hover:shadow-xl hover:shadow-primary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                    onClick={() => closeMobileMenu()}
+                  >
+                    <Phone size={20} />
+                    <span>Contactez-nous</span>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         )}

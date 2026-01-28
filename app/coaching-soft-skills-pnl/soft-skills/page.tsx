@@ -78,11 +78,6 @@ export default function SoftSkillsPage() {
                                     <p className="text-xl md:text-2xl text-foreground/80 font-medium leading-relaxed max-w-3xl">
                                         "Vous aider à <span className="text-[#005b96] font-bold">exceller</span>, à gagner en <span className="text-[#005b96] font-bold">autonomie</span> et à obtenir des résultats <span className="underline decoration-[#FF8A00] decoration-4 underline-offset-4">concrets et durables</span> dans votre parcours."
                                     </p>
-                                    <div className="flex gap-2 mt-4">
-                                        <div className="w-3 h-3 rounded-full bg-[#FF8A00] animate-bounce" style={{ animationDelay: '0s' }}></div>
-                                        <div className="w-3 h-3 rounded-full bg-[#BC0C1B] animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                                        <div className="w-3 h-3 rounded-full bg-[#005b96] animate-bounce" style={{ animationDelay: '0.4s' }}></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

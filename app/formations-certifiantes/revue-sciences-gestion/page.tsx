@@ -60,7 +60,7 @@ export default function RevueSciencesGestionPage() {
                                 <div className="text-red-600 text-4xl font-extrabold select-none">+</div>
 
                                 <Image
-                                    src="/images/logo.jpg"
+                                    src="/images/logo-talents.png"
                                     alt="Logo du centre"
                                     width={240}
                                     height={120}

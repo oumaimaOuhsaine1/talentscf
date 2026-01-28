@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Mail, Phone, MapPin, Facebook, Linkedin, Twitter } from 'lucide-react'
+import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram } from 'lucide-react'
 import { DEFAULT_MENU } from '../lib/menu-data'
 
 export default function Footer() {
@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="flex flex-col items-center">
             <div className="mb-4">
               <Image
-                src="/images/image.png"
+                src="/images/logo-talents.png"
                 alt="Talents Consulting & Formation"
                 width={150}
                 height={75}
@@ -23,9 +23,9 @@ export default function Footer() {
             <div className="text-center">
               <h4 className="font-semibold mb-3 text-sm">Nous suivre</h4>
               <div className="flex gap-3 justify-center">
-                <a href="#" className="text-foreground/60 hover:text-primary transition-colors"><Facebook size={20} /></a>
-                <a href="#" className="text-foreground/60 hover:text-primary transition-colors"><Linkedin size={20} /></a>
-                <a href="#" className="text-foreground/60 hover:text-primary transition-colors"><Twitter size={20} /></a>
+                <a href="https://www.facebook.com/talentsconsultingformations/" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors"><Facebook size={20} /></a>
+                <a href="https://www.linkedin.com/company/talents-consulting-formations" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors"><Linkedin size={20} /></a>
+                <a href="https://www.instagram.com/talents_consulting_formations/" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-primary transition-colors"><Instagram size={20} /></a>
               </div>
             </div>
           </div>
@@ -66,15 +66,22 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Phone size={16} className="text-primary" />
-                <span className="text-foreground/60 text-sm">0661332721</span>
+                <span className="text-foreground/60 text-sm">0661698359</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-primary font-bold text-xs uppercase">Horaires:</span>
+                </div>
+                <p className="text-foreground/60 text-xs pl-6">Lun - Sam: 09:00 – 22:00</p>
+                <p className="text-foreground/60 text-xs pl-6">Dimanche: 09:00 – 17:30</p>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={16} className="text-primary" />
-                <span className="text-foreground/60 text-sm">info@talents.ma</span>
+                <span className="text-foreground/60 text-sm">contact@talentsgrp.com</span>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin size={16} className="text-primary flex-shrink-0 mt-0.5" />
-                <span className="text-foreground/60 text-sm">Bureau N° 45, Centre d'affaire MALIZIA Allal El Fassi, Marrakech 40000</span>
+                <span className="text-foreground/60 text-sm">Bureau no 40 et no 41, Centre d'affaire MALIZIA Allal El Fassi, Marrakech 40000</span>
               </div>
             </div>
           </div>

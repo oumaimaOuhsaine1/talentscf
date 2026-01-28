@@ -4,10 +4,12 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { CheckCircle, ArrowRight, GraduationCap, Briefcase, TrendingUp, Handshake } from 'lucide-react'
+import { CheckCircle, ArrowRight, GraduationCap, Briefcase, TrendingUp, Handshake, ClipboardCheck } from 'lucide-react'
+import InscriptionModal from '@/components/inscription-modal'
 
 export default function DBAPage() {
     const [isDark, setIsDark] = useState(false)
+    const [showInscriptionModal, setShowInscriptionModal] = useState(false)
 
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
@@ -38,16 +40,22 @@ export default function DBAPage() {
                     </div>
                 </section>
 
-                {/* Collaboration Section */}
+                <InscriptionModal
+                    isOpen={showInscriptionModal}
+                    onClose={() => setShowInscriptionModal(false)}
+                    diplomaTitle="DBA"
+                />
+
+                {/* Program Details Section */}
                 <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         <div className="space-y-8">
                             <div className="flex items-center gap-4 mb-6">
                                 <div className="p-3 bg-primary/10 rounded-full">
-                                    <Handshake className="w-8 h-8 text-primary" />
+                                    <GraduationCap className="w-8 h-8 text-primary" />
                                 </div>
                                 <h2 className="text-3xl font-bold text-primary">
-                                    En Partenariat avec Wesford
+                                    Excellence Académique & Managériale
                                 </h2>
                             </div>
 
@@ -56,7 +64,7 @@ export default function DBAPage() {
                                     Le Doctor of Business Administration (DBA) est le diplôme de gestion le plus élevé, conçu pour les cadres expérimentés et les dirigeants souhaitant valider leur expertise par une recherche académique appliquée.
                                 </p>
                                 <p>
-                                    En collaboration avec <strong>Wesford</strong>, nous proposons un parcours d'excellence qui allie réflexion stratégique et impact opérationnel immédiat.
+                                    Notre centre propose un parcours d'excellence qui allie réflexion stratégique et impact opérationnel immédiat, permettant aux professionnels de transformer leur expérience en savoir académique reconnu.
                                 </p>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 text-foreground font-medium">
                                     <div className="flex items-center gap-3">
@@ -79,19 +87,15 @@ export default function DBAPage() {
                             </div>
                         </div>
 
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-8 p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl h-full min-h-[400px]">
-                            <div className="relative w-40 h-40 md:w-56 md:h-56 transform hover:scale-105 transition-transform">
-                                <Image src="/images/image.png" alt="Talents Consulting" fill className="object-contain" />
-                            </div>
-                            <div className="text-5xl font-bold text-primary">+</div>
-                            <div className="relative w-40 h-40 md:w-56 md:h-56 transform hover:scale-105 transition-transform">
-                                <Image src="/images/wesford.png" alt="Wesford" fill className="object-contain" />
+                        <div className="flex flex-col items-center justify-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl h-full min-h-[400px]">
+                            <div className="relative w-64 h-64 transform hover:scale-105 transition-transform">
+                                <Image src="/images/logo-talents.png" alt="Talents Consulting" fill className="object-contain" />
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Program Details */}
+                {/* Program Structure */}
                 <section className="py-20 bg-muted/30">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <h2 className="text-3xl font-bold text-center mb-16 text-primary">
@@ -119,16 +123,16 @@ export default function DBAPage() {
                             ))}
                         </div>
 
-                        <div className="mt-16 text-center">
-                            <a
-                                href="https://www.wesford.ifc.fr/formation/?_niveau=doctorat"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-bold py-4 px-8 rounded-full transition-all shadow-lg"
-                            >
-                                Explorer le cursus DBA
-                                <ArrowRight className="w-5 h-5" />
-                            </a>
+                        <div className="mt-16 flex flex-col items-center gap-8">
+                            <div className="w-full max-w-lg border-t border-gray-200 dark:border-gray-700 pt-8 flex justify-center">
+                                <button
+                                    onClick={() => setShowInscriptionModal(true)}
+                                    className="bg-[#FF8A00] hover:bg-[#E67C00] text-white px-10 py-5 rounded-2xl font-bold text-xl flex items-center gap-3 transition-all transform hover:scale-105 shadow-2xl shadow-orange-500/20 active:scale-95"
+                                >
+                                    <ClipboardCheck className="w-7 h-7" />
+                                    Déposer mon dossier DBA
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>

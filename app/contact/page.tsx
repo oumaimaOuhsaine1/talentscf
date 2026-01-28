@@ -64,15 +64,16 @@ export default function ContactPage() {
                 <div className="bg-card border border-border rounded-xl p-8">
                   <Mail size={32} className="text-primary mb-4" />
                   <h3 className="text-xl font-bold mb-2">Email</h3>
-                  <p className="text-foreground/70">info@talents.ma</p>
+                  <p className="text-foreground/70">contact@talentsgrp.com</p>
                   <p className="text-foreground/70 text-sm mt-1">Réponse dans 24h</p>
                 </div>
 
                 <div className="bg-card border border-border rounded-xl p-8">
                   <Phone size={32} className="text-primary mb-4" />
                   <h3 className="text-xl font-bold mb-2">Téléphone</h3>
-                  <p className="text-foreground/70">0661-332721</p>
-                  <p className="text-foreground/70 text-sm mt-1">Disponible: Lundi - Vendredi 09:00–21:30</p>
+                  <p className="text-foreground/70">0661698359</p>
+                  <p className="text-foreground/70 text-sm mt-1">Lun - Sam: 09:00 – 22:00</p>
+                  <p className="text-foreground/70 text-sm mt-1">Dimanche: 09:00 – 17:30</p>
                 </div>
 
                 {/* Carte déplacée après le formulaire pour s'afficher en pleine largeur */}
@@ -82,7 +83,7 @@ export default function ContactPage() {
               <div className="lg:col-span-2">
                 <div className="bg-card border border-border rounded-xl p-8">
                   <h2 className="text-2xl font-bold mb-6">Envoyez-nous un message</h2>
-                  
+
                   {submitted && (
                     <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 rounded-lg text-green-700">
                       Merci ! Votre message a été envoyé avec succès.

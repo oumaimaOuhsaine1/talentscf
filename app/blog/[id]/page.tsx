@@ -38,7 +38,23 @@ export default function BlogPostPage() {
         localStorage.setItem('theme', isDark ? 'light' : 'dark')
     }
 
-    const loadPost = () => {
+    const loadPost = async () => {
+        try {
+            const response = await fetch(`http://127.0.0.1:5000/api/blog/${params.id}`);
+            if (response.ok) {
+                const data = await response.json();
+                setPost({
+                    ...data,
+                    readTime: data.read_time || '5 min'
+                });
+                setLoading(false);
+                return;
+            }
+        } catch (error) {
+            console.error('Error fetching post from backend:', error);
+        }
+
+        // Fallback to local storage
         const storedPosts = localStorage.getItem('blog-posts')
         if (storedPosts) {
             const posts: BlogPost[] = JSON.parse(storedPosts)
@@ -133,22 +149,15 @@ export default function BlogPostPage() {
                         </div>
 
                         {/* Content */}
-                        <div className="prose prose-lg max-w-none">
-                            <p className="text-xl text-foreground/80 mb-6 leading-relaxed">
+                        <div className="prose prose-lg dark:prose-invert max-w-none">
+                            <p className="text-xl text-foreground/80 mb-6 font-medium leading-relaxed italic border-l-4 border-primary pl-4">
                                 {post.excerpt}
                             </p>
 
-                            <div className="space-y-4 text-foreground/70">
-                                <p>
-                                    {post.content || "Cet article explore en profondeur les concepts clés et offre des perspectives pratiques pour améliorer vos compétences professionnelles. Nos experts partagent leurs connaissances et leur expérience pour vous aider à atteindre vos objectifs."}
-                                </p>
-                                <p>
-                                    La formation continue est essentielle dans le monde professionnel d'aujourd'hui. Elle permet non seulement d'acquérir de nouvelles compétences, mais aussi de rester compétitif et pertinent dans votre domaine.
-                                </p>
-                                <p>
-                                    Chez Talents Consulting & Formation, nous croyons en l'importance de l'apprentissage tout au long de la vie. Nos programmes sont conçus pour répondre aux besoins spécifiques de chaque individu et organisation.
-                                </p>
-                            </div>
+                            <div
+                                className="space-y-4 text-foreground/70 blog-content"
+                                dangerouslySetInnerHTML={{ __html: post.content || "" }}
+                            />
                         </div>
 
                         {/* CTA */}

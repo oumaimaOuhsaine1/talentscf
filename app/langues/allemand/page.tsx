@@ -6,9 +6,11 @@ import Link from 'next/link'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { CheckCircle, ArrowRight, BookOpen, MessageCircle, TrendingUp, Globe, Users, User, Users2, Target, Sparkles, Coffee, Presentation, Award } from 'lucide-react'
+import LanguageInscriptionModal from '@/components/language-inscription-modal'
 
 export default function AllemandPage() {
     const [isDark, setIsDark] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     useEffect(() => {
         const isDarkMode = document.documentElement.classList.contains('dark')
@@ -239,18 +241,23 @@ export default function AllemandPage() {
                     </div>
                 </section>
 
-                {/* Final CTA Section */}
                 <section className="py-12 bg-background border-t border-border">
                     <div className="max-w-7xl mx-auto px-4 text-center">
-                        <Link
-                            href="/contact/inscriptions-en-ligne"
+                        <button
+                            onClick={() => setShowModal(true)}
                             className="inline-flex items-center gap-3 bg-yellow-600 hover:bg-yellow-700 text-white text-xl font-bold py-5 px-10 rounded-full transition-all hover:scale-105 shadow-xl hover:shadow-yellow-600/20"
                         >
                             S'inscrire à une session
                             <ArrowRight className="w-6 h-6" />
-                        </Link>
+                        </button>
                     </div>
                 </section>
+
+                <LanguageInscriptionModal
+                    isOpen={showModal}
+                    onClose={() => setShowModal(false)}
+                    language="Allemand"
+                />
             </main>
 
             <Footer />
